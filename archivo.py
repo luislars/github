@@ -10,3 +10,7 @@ if __name__ == "__main__":
     print("Recuerda que la gestión de licencias es importante para proteger tu software.") 
     print("¡Gracias por usar nuestro sistema de gestión de licencias!")
     print("¡Hasta luego!")
+
+
+
+    hola = "Hola, soy un script de Python."
