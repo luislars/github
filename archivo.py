@@ -12,6 +12,7 @@ if __name__ == "__main__":
     print("¡Hasta luego!")
     print("¡Adiós!")
     print("¡Hola, soy un script de Python! sin modificaciones.")
+    print("¡Hola, soy un script de Python! sin modificaciones.")
 
 
 
