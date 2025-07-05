@@ -372,7 +372,7 @@ footer {
 
 .social-icons a:hover, .social-icons a:focus {
     color: #ffffff; /* Iconos blancos al pasar el ratón */
-    transform: scale(1.1); /* Ligero zoom al pasar el ratón */
+    transform: scale(1.15) translateY(-2px); /* Ligero zoom y elevación al pasar el ratón */
 }
 
 /* -------------------------------------------------------------------------- */
@@ -454,6 +454,7 @@ body.dark-mode {
     --hero-gradient-start: #1a2a3a;
     --hero-gradient-end: #0d1117;
     --footer-background: #0d1117; /* Footer coincide con el fondo general oscuro */
+    --image-background-dark: #161b22; /* Un fondo para imágenes ligeramente diferente al fondo principal en modo oscuro */
 }
 
 /* Aplicar transiciones a los elementos afectados por el cambio de tema */
@@ -535,7 +536,12 @@ body.dark-mode .btn-secondary:hover, body.dark-mode .btn-secondary:focus {
     box-shadow: 0 10px 25px var(--shadow-color-medium);
 }
 .product-card img {
-    background-color: var(--background-color); /* El fondo de la imagen coincide con el fondo general */
+    /* El fondo de la imagen coincide con el fondo general en modo claro,
+       y usa --image-background-dark en modo oscuro para un ligero contraste si la imagen tiene transparencias. */
+    background-color: var(--background-color);
+}
+body.dark-mode .product-card img {
+    background-color: var(--image-background-dark);
 }
 .product-card h3 {
     color: var(--text-color-primary);
