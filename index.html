@@ -1,64 +1,88 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es"> <!-- Establece el idioma de la página a español -->
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tienda Estilo Samsung</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Configuración básica del documento -->
+    <meta charset="UTF-8"> <!-- Define la codificación de caracteres como UTF-8, esencial para la correcta visualización de acentos y caracteres especiales -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Configura la vista para dispositivos móviles, asegurando que la página sea responsive (se adapte al ancho del dispositivo) y la escala inicial sea 1 -->
+    <title>Tienda Estilo Samsung</title> <!-- Título que aparecerá en la pestaña del navegador y es importante para SEO -->
+
+    <!-- Enlace a la hoja de estilos CSS externa -->
+    <link rel="stylesheet" href="style.css"> <!-- Conecta este HTML con el archivo style.css que contendrá todos los estilos visuales -->
+
+    <!-- Precarga de conexiones a Google Fonts para optimizar la carga de fuentes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com"> <!-- Establece una conexión temprana con el servidor de Google Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <!-- Establece una conexión temprana con el servidor de Google Fonts (gstatic) usando crossorigin para permitir la carga de recursos de diferentes orígenes -->
+    <!-- Importación de las familias de fuentes Roboto y Poppins de Google Fonts con diferentes pesos (grosor) -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Encabezado Principal de la página (Header) -->
+    <!-- Contiene la navegación principal del sitio -->
     <header>
+        <!-- Barra de Navegación (Navbar) -->
         <nav class="navbar">
-            <div class="container">
-                <a href="#" class="navbar-brand">SamsungStyle</a>
+            <div class="container"> <!-- Contenedor para centrar y limitar el ancho del contenido de la barra de navegación, mejorando la legibilidad en pantallas anchas -->
+                <!-- Marca o Logo del Sitio -->
+                <a href="index.html" class="navbar-brand">SamsungStyle</a> <!-- Enlace al inicio (index.html) con el nombre de la marca. Es importante que el logo siempre lleve a la página principal -->
+
+                <!-- Lista de Enlaces de Navegación Principal -->
                 <ul class="navbar-nav">
-                    <li><a href="#">Inicio</a></li>
-                    <li><a href="#">Móviles</a></li>
-                    <li><a href="#">TV & AV</a></li>
-                    <li><a href="#">Electrodomésticos</a></li>
-                    <li><a href="#">Informática</a></li>
-                    <li><a href="#">Ofertas</a></li>
+                    <li><a href="#inicio">Inicio</a></li> <!-- Enlace interno a la sección de inicio (id="inicio") -->
+                    <li><a href="#moviles">Móviles</a></li> <!-- Enlace a la sección de móviles -->
+                    <li><a href="#tv-av">TV & AV</a></li> <!-- Enlace a la sección de TV y Audio/Video -->
+                    <li><a href="#electrodomesticos">Electrodomésticos</a></li> <!-- Enlace a la sección de electrodomésticos -->
+                    <li><a href="#informatica">Informática</a></li> <!-- Enlace a la sección de informática -->
+                    <li><a href="#ofertas">Ofertas</a></li> <!-- Enlace a la sección de ofertas -->
                 </ul>
+
+                <!-- Iconos de Navegación Auxiliar (Búsqueda, Carrito, Usuario) -->
                 <div class="navbar-icons">
-                    <a href="#" aria-label="Buscar"><i class="icon-search"></i></a>
-                    <a href="#" aria-label="Carrito"><i class="icon-cart"></i></a>
-                    <a href="#" aria-label="Usuario"><i class="icon-user"></i></a>
+                    <a href="#" aria-label="Buscar"><i class="icon-search"></i></a> <!-- Icono de búsqueda. aria-label proporciona una descripción para lectores de pantalla, mejorando la accesibilidad -->
+                    <a href="#" aria-label="Carrito"><i class="icon-cart"></i></a> <!-- Icono de carrito de compras -->
+                    <a href="#" aria-label="Usuario"><i class="icon-user"></i></a> <!-- Icono de perfil de usuario o inicio de sesión -->
                 </div>
             </div>
         </nav>
     </header>
 
+    <!-- Contenido Principal de la Página (Main) -->
+    <!-- Aquí va el contenido más importante y único de esta página en particular -->
     <main>
-        <section class="hero">
+        <!-- Sección Hero (Banner Principal de bienvenida o producto destacado) -->
+        <section id="inicio" class="hero"> <!-- id="inicio" permite que el enlace del menú "Inicio" lleve directamente a esta sección -->
             <div class="container">
-                <h1>Descubre la Innovación</h1>
-                <p>Explora lo último en tecnología y lleva tu vida al siguiente nivel.</p>
-                <a href="#" class="btn btn-primary">Ver Productos</a>
+                <h1>Descubre la Innovación</h1> <!-- Título principal y llamativo de la sección hero -->
+                <p>Explora lo último en tecnología y lleva tu vida al siguiente nivel.</p> <!-- Subtítulo o descripción breve que complementa al título -->
+                <a href="#featured-products" class="btn btn-primary">Ver Productos</a> <!-- Botón de llamada a la acción (Call to Action - CTA) que dirige a la sección de productos destacados -->
             </div>
         </section>
 
-        <section class="featured-products">
+        <!-- Sección de Productos Destacados -->
+        <section id="featured-products" class="featured-products"> <!-- id="featured-products" para anclaje desde el botón "Ver Productos" u otros enlaces -->
             <div class="container">
-                <h2>Productos Destacados</h2>
+                <h2>Productos Destacados</h2> <!-- Título de la sección -->
+                <!-- Cuadrícula (Grid) para mostrar los productos de forma organizada -->
                 <div class="product-grid">
-                    <!-- Product cards se añadirán aquí -->
+                    <!-- Tarjeta de Producto Individual (Ejemplo 1) -->
+                    <!-- La etiqueta <article> es semánticamente adecuada para contenido auto-contenido como una tarjeta de producto -->
                     <article class="product-card">
-                        <img src="https://via.placeholder.com/300x200?text=Producto+1" alt="Producto 1">
-                        <h3>Galaxy S24 Ultra</h3>
-                        <p>El poder de la IA en tus manos.</p>
-                        <a href="#" class="btn btn-secondary">Más Información</a>
+                        <img src="https://via.placeholder.com/300x200?text=Producto+1" alt="Teléfono Móvil Galaxy S24 Ultra con IA"> <!-- Imagen del producto. El atributo alt es crucial para la accesibilidad y SEO, describiendo la imagen -->
+                        <h3>Galaxy S24 Ultra</h3> <!-- Nombre del producto -->
+                        <p>El poder de la IA en tus manos.</p> <!-- Descripción corta y atractiva del producto -->
+                        <a href="#" class="btn btn-secondary">Más Información</a> <!-- Botón para ver más detalles del producto específico -->
                     </article>
+
+                    <!-- Tarjeta de Producto Individual (Ejemplo 2) -->
                     <article class="product-card">
-                        <img src="https://via.placeholder.com/300x200?text=Producto+2" alt="Producto 2">
+                        <img src="https://via.placeholder.com/300x200?text=Producto+2" alt="Televisor Neo QLED 8K de alta resolución">
                         <h3>Neo QLED 8K</h3>
                         <p>Imágenes que desafían la realidad.</p>
                         <a href="#" class="btn btn-secondary">Más Información</a>
                     </article>
+
+                    <!-- Tarjeta de Producto Individual (Ejemplo 3) -->
                     <article class="product-card">
-                        <img src="https://via.placeholder.com/300x200?text=Producto+3" alt="Producto 3">
+                        <img src="https://via.placeholder.com/300x200?text=Producto+3" alt="Lavadora Bespoke AI con diseño personalizable e inteligencia artificial">
                         <h3>Bespoke AI Lavadora</h3>
                         <p>Lavado inteligente, vida fácil.</p>
                         <a href="#" class="btn btn-secondary">Más Información</a>
@@ -68,9 +92,13 @@
         </section>
     </main>
 
+    <!-- Pie de Página (Footer) -->
+    <!-- Contiene información secundaria, enlaces de utilidad, copyright, etc. -->
     <footer>
         <div class="container">
+            <!-- Sección de Enlaces del Pie de Página, usualmente organizada en columnas para mejor legibilidad -->
             <div class="footer-links">
+                <!-- Columna de Enlaces: Productos y Servicios -->
                 <div>
                     <h4>Productos y Servicios</h4>
                     <ul>
@@ -79,46 +107,65 @@
                         <li><a href="#">Audio y Video</a></li>
                         <li><a href="#">Electrodomésticos</a></li>
                         <li><a href="#">Monitores</a></li>
+                        <li><a href="#">Accesorios</a></li> <!-- Enlace adicional -->
                     </ul>
                 </div>
+                <!-- Columna de Enlaces: Soporte -->
                 <div>
                     <h4>Soporte</h4>
                     <ul>
                         <li><a href="#">Contacto</a></li>
                         <li><a href="#">Soporte de Producto</a></li>
+                        <li><a href="#">Manuales y Descargas</a></li> <!-- Enlace adicional -->
                         <li><a href="#">Garantía</a></li>
                         <li><a href="#">Reparaciones</a></li>
+                        <li><a href="#">Preguntas Frecuentes</a></li> <!-- Enlace adicional -->
                     </ul>
                 </div>
+                <!-- Columna de Enlaces: Acerca de Nosotros -->
                 <div>
                     <h4>Acerca de Nosotros</h4>
                     <ul>
                         <li><a href="#">Nuestra Empresa</a></li>
-                        <li><a href="#">Noticias</a></li>
+                        <li><a href="#">Sala de Prensa</a></li> <!-- Enlace adicional -->
                         <li><a href="#">Sostenibilidad</a></li>
                         <li><a href="#">Trabaja con Nosotros</a></li>
+                        <li><a href="#">Inversores</a></li> <!-- Enlace adicional -->
+                        <li><a href="#">Ética Global</a></li> <!-- Enlace adicional -->
                     </ul>
                 </div>
             </div>
+            <!-- Sección Inferior del Pie de Página -->
             <div class="footer-bottom">
-                <p>&copy; 2024 SamsungStyle. Todos los derechos reservados.</p>
+                <p>&copy; 2024 SamsungStyle. Todos los derechos reservados.</p> <!-- Información de Copyright -->
+                <!-- Iconos de Redes Sociales -->
                 <div class="social-icons">
-                    <a href="#" aria-label="Facebook"><i class="icon-facebook"></i></a>
-                    <a href="#" aria-label="Twitter"><i class="icon-twitter"></i></a>
-                    <a href="#" aria-label="Instagram"><i class="icon-instagram"></i></a>
+                    <a href="#" aria-label="Visita nuestra página de Facebook"><i class="icon-facebook"></i></a> <!-- aria-label más descriptivo -->
+                    <a href="#" aria-label="Síguenos en Twitter"><i class="icon-twitter"></i></a>
+                    <a href="#" aria-label="Descubre nuestro Instagram"><i class="icon-instagram"></i></a>
+                    <a href="#" aria-label="Mira nuestros videos en YouTube"><i class="icon-youtube"></i></a> <!-- Icono y enlace adicional -->
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- Iconos (ejemplo, necesitarás una librería de iconos o SVGs) -->
+    <!-- Bloque de Estilos para Iconos de Marcador de Posición (Placeholder Icons) -->
+    <!-- IMPORTANTE: Estos son solo placeholders visuales y no son ideales para producción.
+         Para un sitio web real, se recomienda encarecidamente usar:
+         1. SVGs individuales: Ofrecen la mejor calidad, escalabilidad y son personalizables con CSS.
+         2. Librerías de iconos SVG/Fuentes de Iconos: Como FontAwesome, Bootstrap Icons, Material Icons, etc.
+            Estas librerías suelen ofrecer mejor semántica, accesibilidad y una amplia variedad de iconos.
+         Los estilos 'content' con emojis son una solución rápida y temporal para visualización durante el desarrollo. -->
     <style>
-        .icon-search::before { content: "🔍"; } /* Placeholder */
-        .icon-cart::before { content: "🛒"; }   /* Placeholder */
-        .icon-user::before { content: "👤"; }    /* Placeholder */
-        .icon-facebook::before { content: "📘"; } /* Placeholder */
-        .icon-twitter::before { content: "🐦"; }  /* Placeholder */
-        .icon-instagram::before { content: "📸"; }/* Placeholder */
+        /* Estilos básicos para los placeholders de iconos.
+           Ajustar 'font-size' y 'vertical-align' según sea necesario para una correcta alineación con el texto o como iconos independientes. */
+        .icon-search::before   { content: "🔍"; font-size: 1.1em; vertical-align: middle; } /* Placeholder para icono de búsqueda */
+        .icon-cart::before     { content: "🛒"; font-size: 1.1em; vertical-align: middle; } /* Placeholder para icono de carrito */
+        .icon-user::before     { content: "👤"; font-size: 1.1em; vertical-align: middle; } /* Placeholder para icono de usuario */
+        .icon-facebook::before { content: "📘"; font-size: 1.2em; vertical-align: middle; } /* Placeholder para icono de Facebook */
+        .icon-twitter::before  { content: "🐦"; font-size: 1.2em; vertical-align: middle; } /* Placeholder para icono de Twitter */
+        .icon-instagram::before{ content: "📸"; font-size: 1.2em; vertical-align: middle; } /* Placeholder para icono de Instagram */
+        .icon-youtube::before  { content: "▶️"; font-size: 1.2em; vertical-align: middle; } /* Placeholder para icono de YouTube (añadido) */
     </style>
 </body>
 </html>

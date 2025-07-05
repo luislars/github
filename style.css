@@ -1,361 +1,474 @@
-/* Global Resets and Base Styles */
+/* -------------------------------------------------------------------------- */
+/*                             RESETS GLOBALES Y ESTILOS BASE                 */
+/* -------------------------------------------------------------------------- */
+
+/*
+ * Reseteo universal y configuración del modelo de caja a border-box.
+ * Esto significa que el padding y el border se incluyen en el ancho y alto total del elemento,
+ * facilitando el cálculo de dimensiones.
+ */
 *,
-*::before,
-*::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+*::before, /* Aplica también a los pseudo-elementos ::before */
+*::after {  /* Aplica también a los pseudo-elementos ::after */
+    box-sizing: border-box; /* El modelo de caja preferido por muchos desarrolladores */
+    margin: 0; /* Elimina todos los márgenes por defecto */
+    padding: 0; /* Elimina todos los paddings por defecto */
 }
 
+/* Estilos base para el elemento HTML */
 html {
-    font-size: 16px; /* Base font size */
-    line-height: 1.5;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    font-size: 16px; /* Establece el tamaño de fuente base. 1rem equivaldrá a 16px. */
+    line-height: 1.6; /* Altura de línea base para mejorar la legibilidad. Ligeramente aumentada. */
+    -webkit-font-smoothing: antialiased; /* Mejora el renderizado de fuentes en WebKit (Chrome, Safari) */
+    -moz-osx-font-smoothing: grayscale; /* Mejora el renderizado de fuentes en Firefox en macOS */
+    scroll-behavior: smooth; /* Habilita el desplazamiento suave para anclas (#) */
 }
 
+/* Estilos base para el BODY */
 body {
-    font-family: 'Roboto', sans-serif; /* Fallback a Poppins si no carga */
-    color: #333;
-    background-color: #f4f6f8; /* Un gris muy claro para el fondo general */
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+    font-family: 'Roboto', 'Poppins', sans-serif; /* Define la pila de fuentes principal. Roboto es sólida, Poppins para títulos/énfasis. */
+    color: #333; /* Color de texto principal, un gris oscuro en lugar de negro puro para menor fatiga visual. */
+    background-color: #f8f9fa; /* Un gris muy claro y neutro para el fondo general, común en diseños modernos. */
+    display: flex; /* Permite usar flexbox para el layout general */
+    flex-direction: column; /* Apila los hijos directos (header, main, footer) verticalmente */
+    min-height: 100vh; /* Asegura que el body ocupe al menos toda la altura de la ventana gráfica (viewport height), útil para footers pegajosos. */
 }
 
+/* Estilos base para imágenes */
 img {
-    max-width: 100%;
-    height: auto;
-    display: block;
+    max-width: 100%; /* Asegura que las imágenes no se desborden de su contenedor */
+    height: auto; /* Mantiene la proporción de la imagen al escalar el ancho */
+    display: block; /* Elimina el espacio extra debajo de las imágenes (comportamiento inline por defecto) */
+    object-fit: cover; /* Asegura que la imagen cubra su contenedor, puede recortar si las proporciones no coinciden. Útil para imágenes de fondo o tarjetas. */
 }
 
+/* Estilos base para enlaces */
 a {
-    text-decoration: none;
-    color: #007bff; /* Azul Samsung primario */
+    text-decoration: none; /* Elimina el subrayado por defecto de los enlaces */
+    color: #0072c6; /* Un azul Samsung más corporativo y moderno. */
+    transition: color 0.25s ease-out; /* Transición suave para el cambio de color al pasar el ratón. */
 }
 
-a:hover {
-    text-decoration: underline;
-    color: #0056b3; /* Azul Samsung más oscuro */
+a:hover, a:focus { /* :focus es importante para accesibilidad con teclado */
+    text-decoration: none; /* Mantenemos sin subrayado en hover para un look más limpio, el color indica interactividad. */
+    color: #005ba1; /* Azul Samsung más oscuro para el estado hover/focus. */
 }
 
+/* Elimina los estilos de lista por defecto para <ul> */
 ul {
     list-style: none;
 }
 
+/* Clase de utilidad para contenedores principales */
 .container {
-    width: 90%;
-    max-width: 1200px; /* Maxima anchura para el contenido */
-    margin: 0 auto;
-    padding: 0 15px;
+    width: 90%; /* Usa un porcentaje del ancho de la ventana */
+    max-width: 1280px; /* Límite máximo de ancho para el contenido, un poco más generoso. */
+    margin-left: auto; /* Centra el contenedor horizontalmente */
+    margin-right: auto; /* Centra el contenedor horizontalmente */
+    padding-left: 20px; /* Padding horizontal para evitar que el contenido toque los bordes en pantallas pequeñas. */
+    padding-right: 20px;
 }
 
-/* Header and Navbar */
+/* -------------------------------------------------------------------------- */
+/*                             ENCABEZADO Y NAVEGACIÓN                        */
+/* -------------------------------------------------------------------------- */
 .navbar {
-    background-color: #ffffff;
-    padding: 1rem 0;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
+    background-color: #ffffff; /* Fondo blanco para la barra de navegación */
+    padding: 0.8rem 0; /* Padding vertical reducido para un look más compacto */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08); /* Sombra más sutil y moderna */
+    position: sticky; /* Fija la barra de navegación en la parte superior al hacer scroll */
+    top: 0; /* Pega la barra en la parte superior */
+    z-index: 1000; /* Asegura que la barra de navegación esté por encima de otros contenidos */
+    transition: box-shadow 0.3s ease; /* Transición para la sombra si se añade dinámicamente */
 }
 
 .navbar .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    display: flex; /* Organiza los elementos hijos en una fila */
+    justify-content: space-between; /* Distribuye el espacio entre el logo, nav y los iconos */
+    align-items: center; /* Centra verticalmente los elementos en la barra */
 }
 
 .navbar-brand {
-    font-family: 'Poppins', sans-serif;
-    font-size: 1.75rem;
-    font-weight: 700;
-    color: #1a1a1a; /* Negro/gris oscuro para la marca */
+    font-family: 'Poppins', sans-serif; /* Fuente distintiva para la marca */
+    font-size: 1.85rem; /* Tamaño de fuente ligeramente aumentado para la marca */
+    font-weight: 600; /* Peso de fuente semi-bold para la marca */
+    color: #1d1d1f; /* Un negro ligeramente más suave, similar al de Apple/Samsung. */
+    letter-spacing: -0.5px; /* Ajuste sutil del espaciado entre letras */
 }
-.navbar-brand:hover {
-    text-decoration: none;
-    color: #007bff;
+.navbar-brand:hover, .navbar-brand:focus {
+    color: #0072c6; /* Color de hover para la marca */
 }
 
 .navbar-nav {
-    display: flex;
-    gap: 1.5rem; /* Espacio entre items del menu */
+    display: flex; /* Organiza los ítems del menú en una fila */
+    gap: 2rem; /* Espacio entre los ítems del menú, aumentado ligeramente */
 }
 
 .navbar-nav a {
     font-family: 'Poppins', sans-serif;
-    font-weight: 500;
-    color: #555;
-    font-size: 0.95rem;
-    transition: color 0.2s ease-in-out;
+    font-weight: 500; /* Peso medio para los enlaces de navegación */
+    color: #4f4f4f; /* Gris oscuro para los enlaces, buena legibilidad */
+    font-size: 0.9rem; /* Tamaño de fuente ligeramente reducido para un look más refinado */
+    text-transform: uppercase; /* Opcional: para un estilo más formal/de marca */
+    letter-spacing: 0.5px; /* Ligero espaciado entre letras */
+    position: relative; /* Para el pseudo-elemento del subrayado en hover */
+    padding-bottom: 0.3rem; /* Espacio para el subrayado animado */
 }
 
-.navbar-nav a:hover {
-    color: #007bff;
-    text-decoration: none;
+.navbar-nav a::after { /* Pseudo-elemento para el subrayado animado */
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #0072c6;
+    transition: width 0.3s ease-out;
+}
+
+.navbar-nav a:hover::after,
+.navbar-nav a:focus::after {
+    width: 100%; /* Anima el ancho del subrayado al 100% */
+}
+
+.navbar-nav a:hover, .navbar-nav a:focus {
+    color: #0072c6; /* Color del texto al pasar el ratón o enfocar */
+    text-decoration: none; /* Asegura que no haya otro subrayado */
 }
 
 .navbar-icons {
-    display: flex;
-    align-items: center;
-    gap: 1.2rem;
+    display: flex; /* Organiza los iconos en una fila */
+    align-items: center; /* Centra verticalmente los iconos */
+    gap: 1.5rem; /* Espacio entre los iconos */
 }
 
 .navbar-icons a {
-    color: #555;
-    font-size: 1.2rem; /* Tamaño de iconos */
+    color: #4f4f4f;
+    font-size: 1.25rem; /* Tamaño de los iconos */
+    transition: color 0.25s ease-out;
 }
-.navbar-icons a:hover {
-    color: #007bff;
-    text-decoration: none;
+.navbar-icons a:hover, .navbar-icons a:focus {
+    color: #0072c6;
 }
 
-/* Main Content Area */
+/* -------------------------------------------------------------------------- */
+/*                             ÁREA DE CONTENIDO PRINCIPAL                    */
+/* -------------------------------------------------------------------------- */
 main {
-    flex-grow: 1;
-    padding-top: 2rem; /* Espacio debajo del navbar fijo */
-    padding-bottom: 3rem;
+    flex-grow: 1; /* Permite que el main ocupe el espacio restante si el footer es pegajoso */
+    padding-top: 3rem; /* Espacio para compensar la altura de la barra de navegación fija (ajustar si cambia la altura de la navbar) */
+    padding-bottom: 4rem; /* Espacio en la parte inferior del contenido principal */
 }
 
-/* Hero Section */
+/* -------------------------------------------------------------------------- */
+/*                             SECCIÓN HERO (BANNER)                          */
+/* -------------------------------------------------------------------------- */
 .hero {
-    background-color: #003366; /* Azul oscuro Samsung o un gradiente */
-    color: #ffffff;
-    padding: 4rem 0;
-    text-align: center;
-    margin-bottom: 3rem;
+    background: linear-gradient(to right, #001f3f, #003366); /* Gradiente azul oscuro sutil */
+    color: #ffffff; /* Texto blanco para contraste */
+    padding: 5rem 0; /* Padding vertical generoso */
+    text-align: center; /* Centra el contenido de la sección hero */
+    margin-bottom: 4rem; /* Espacio después de la sección hero */
+    border-radius: 0 0 20px 20px; /* Bordes inferiores redondeados para un efecto suave */
+    box-shadow: 0 4px 10px rgba(0, 31, 63, 0.3);
 }
 
 .hero h1 {
     font-family: 'Poppins', sans-serif;
-    font-size: 2.8rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
+    font-size: clamp(2.5rem, 5vw, 3.5rem); /* Tamaño de fuente responsive */
+    font-weight: 700; /* Peso bold para el título principal */
+    margin-bottom: 1.5rem;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.2); /* Sombra de texto sutil */
 }
 
 .hero p {
-    font-size: 1.1rem;
-    margin-bottom: 2rem;
-    max-width: 600px;
+    font-size: clamp(1rem, 2.5vw, 1.25rem); /* Tamaño de fuente responsive para el párrafo */
+    margin-bottom: 2.5rem;
+    max-width: 700px; /* Limita el ancho del párrafo para mejor legibilidad */
     margin-left: auto;
     margin-right: auto;
+    opacity: 0.9; /* Ligera transparencia para el texto secundario */
 }
 
+/* Estilos para botones */
 .btn {
     font-family: 'Poppins', sans-serif;
-    padding: 0.75rem 1.5rem;
+    padding: 0.85rem 2rem; /* Padding ligeramente ajustado */
     border: none;
-    border-radius: 5px;
+    border-radius: 25px; /* Bordes más redondeados para un estilo moderno */
     font-weight: 500;
     cursor: pointer;
-    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
     display: inline-block;
     text-align: center;
+    letter-spacing: 0.5px;
+}
+
+.btn:hover, .btn:focus {
+    transform: translateY(-2px); /* Ligero efecto de elevación al pasar el ratón */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .btn-primary {
-    background-color: #007bff;
+    background-color: #0072c6;
     color: #ffffff;
 }
 
-.btn-primary:hover {
-    background-color: #0056b3;
+.btn-primary:hover, .btn-primary:focus {
+    background-color: #005ba1;
     color: #ffffff;
     text-decoration: none;
 }
 
 .btn-secondary {
-    background-color: #6c757d; /* Gris secundario */
-    color: #ffffff;
+    background-color: transparent;
+    color: #333; /* Color de texto para el botón secundario */
+    border: 2px solid #dee2e6; /* Borde sutil para el botón secundario */
 }
 
-.btn-secondary:hover {
-    background-color: #545b62;
-    color: #ffffff;
+.btn-secondary:hover, .btn-secondary:focus {
+    background-color: #e9ecef; /* Fondo claro al pasar el ratón */
+    color: #005ba1;
+    border-color: #c1c9d1;
     text-decoration: none;
 }
 
-
-/* Featured Products Section */
+/* -------------------------------------------------------------------------- */
+/*                             SECCIÓN DE PRODUCTOS DESTACADOS                */
+/* -------------------------------------------------------------------------- */
 .featured-products {
-    padding-bottom: 3rem;
+    padding-bottom: 4rem;
 }
 
 .featured-products h2 {
     font-family: 'Poppins', sans-serif;
-    font-size: 2rem;
+    font-size: clamp(1.8rem, 4vw, 2.5rem); /* Tamaño de fuente responsive */
     font-weight: 600;
     text-align: center;
-    margin-bottom: 2.5rem;
-    color: #1a1a1a;
+    margin-bottom: 3rem; /* Mayor espacio antes de la cuadrícula de productos */
+    color: #1d1d1f;
 }
 
 .product-grid {
     display: grid;
+    /* Crea columnas responsivas: mínimo 280px de ancho, se ajustan para llenar el espacio */
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
+    gap: 2.5rem; /* Espacio entre las tarjetas de producto */
 }
 
 .product-card {
     background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.08);
-    overflow: hidden;
-    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    border-radius: 12px; /* Bordes más redondeados para las tarjetas */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.07); /* Sombra más pronunciada y suave */
+    overflow: hidden; /* Asegura que el contenido no se desborde de los bordes redondeados */
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /* Organiza el contenido de la tarjeta verticalmente */
 }
 
 .product-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0,0,0,0.12);
+    transform: translateY(-8px); /* Efecto de elevación más notable */
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1); /* Sombra más intensa al pasar el ratón */
 }
 
 .product-card img {
     width: 100%;
-    height: 200px; /* Altura fija para la imagen */
-    object-fit: cover; /* Cubre el area, puede recortar */
+    height: 220px; /* Altura fija para la imagen, ligeramente aumentada */
+    object-fit: contain; /* 'contain' asegura que toda la imagen sea visible, puede dejar espacio si las proporciones no coinciden. Cambiar a 'cover' si se prefiere llenar el espacio. */
+    padding: 1rem; /* Añade un poco de espacio alrededor de la imagen dentro de su contenedor */
+    background-color: #f8f9fa; /* Fondo sutil para el área de la imagen */
 }
 
 .product-card h3 {
     font-family: 'Poppins', sans-serif;
-    font-size: 1.25rem;
+    font-size: 1.3rem; /* Tamaño de fuente para el nombre del producto */
     font-weight: 600;
-    margin: 1rem 1rem 0.5rem 1rem;
-    color: #222;
+    margin: 1.2rem 1.2rem 0.5rem 1.2rem; /* Márgenes ajustados */
+    color: #1d1d1f;
+    line-height: 1.3;
 }
 
 .product-card p {
     font-size: 0.9rem;
-    color: #666;
-    margin: 0 1rem 1rem 1rem;
-    flex-grow: 1; /* Permite que la descripción ocupe espacio */
+    color: #555; /* Color de texto para la descripción */
+    margin: 0 1.2rem 1.2rem 1.2rem;
+    flex-grow: 1; /* Permite que la descripción ocupe el espacio disponible, útil si las descripciones varían en longitud */
+    line-height: 1.5;
 }
 
 .product-card .btn {
-    margin: 0 1rem 1rem 1rem;
-    width: calc(100% - 2rem); /* Botón ocupa el ancho menos el padding */
+    margin: 0 auto 1.5rem auto; /* Centra el botón y añade margen inferior */
+    display: block; /* Hace que el botón ocupe el ancho disponible si se desea */
+    width: calc(100% - 2.4rem); /* Botón ocupa el ancho menos el padding horizontal de la tarjeta */
+    padding: 0.7rem 1rem; /* Padding del botón en la tarjeta */
 }
 
-
-/* Footer */
+/* -------------------------------------------------------------------------- */
+/*                                 PIE DE PÁGINA                              */
+/* -------------------------------------------------------------------------- */
 footer {
-    background-color: #212529; /* Negro/gris muy oscuro para el footer */
-    color: #adb5bd; /* Gris claro para el texto del footer */
-    padding: 3rem 0;
-    font-size: 0.9rem;
+    background-color: #1d1d1f; /* Negro suave para el footer, coherente con la marca */
+    color: #a8a8b3; /* Gris claro para el texto del footer, buena legibilidad sobre fondo oscuro */
+    padding: 4rem 0 2rem 0; /* Padding vertical generoso, menos en la parte inferior */
+    font-size: 0.875rem; /* Tamaño de fuente ligeramente más pequeño para el footer */
 }
 
 .footer-links {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 2rem;
-    margin-bottom: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Columnas responsivas para los enlaces */
+    gap: 2.5rem; /* Espacio entre las columnas de enlaces */
+    margin-bottom: 3rem;
 }
 
 .footer-links h4 {
     font-family: 'Poppins', sans-serif;
-    color: #ffffff;
-    font-size: 1.1rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
+    color: #ffffff; /* Texto blanco para los títulos de las secciones del footer */
+    font-size: 1.15rem;
+    font-weight: 500;
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.3px;
+}
+
+.footer-links ul li {
+    margin-bottom: 0.5rem; /* Espacio entre los ítems de la lista */
 }
 
 .footer-links ul li a {
-    color: #adb5bd;
-    display: block;
-    padding: 0.3rem 0;
-    transition: color 0.2s ease;
+    color: #a8a8b3;
+    transition: color 0.25s ease-out, padding-left 0.25s ease-out;
 }
 
-.footer-links ul li a:hover {
-    color: #ffffff;
+.footer-links ul li a:hover, .footer-links ul li a:focus {
+    color: #ffffff; /* Texto blanco al pasar el ratón sobre los enlaces del footer */
+    padding-left: 5px; /* Ligero desplazamiento al pasar el ratón para feedback visual */
     text-decoration: none;
 }
 
 .footer-bottom {
-    border-top: 1px solid #343a40; /* Línea divisoria sutil */
-    padding-top: 1.5rem;
+    border-top: 1px solid #3a3a3c; /* Línea divisoria sutil y moderna */
+    padding-top: 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap; /* Para responsividad */
+    flex-wrap: wrap; /* Permite que los elementos se ajusten en pantallas pequeñas */
+    gap: 1rem; /* Espacio entre el texto de copyright y los iconos sociales */
 }
 
 .footer-bottom p {
     margin: 0;
+    font-size: 0.85rem;
 }
 
 .social-icons {
     display: flex;
-    gap: 1rem;
+    gap: 1.2rem; /* Espacio entre los iconos sociales */
 }
 
 .social-icons a {
-    color: #adb5bd;
-    font-size: 1.3rem;
+    color: #a8a8b3;
+    font-size: 1.4rem; /* Tamaño de los iconos sociales */
+    transition: color 0.25s ease-out, transform 0.25s ease-out;
 }
 
-.social-icons a:hover {
-    color: #ffffff;
+.social-icons a:hover, .social-icons a:focus {
+    color: #ffffff; /* Iconos blancos al pasar el ratón */
+    transform: scale(1.1); /* Ligero zoom al pasar el ratón */
 }
 
-/* Icon placeholders - Reemplazar con una librería de iconos real o SVGs */
+/* -------------------------------------------------------------------------- */
+/*                             ESTILOS RESPONSIVE                             */
+/* -------------------------------------------------------------------------- */
+
+/* Para tablets y dispositivos más pequeños */
+@media (max-width: 992px) {
+    .navbar-nav {
+        gap: 1.2rem; /* Reduce el espacio entre ítems del menú en tablets */
+    }
+    .navbar-nav a {
+        font-size: 0.85rem; /* Reduce tamaño de fuente del menú */
+    }
+}
+
+/* Para móviles */
+@media (max-width: 768px) {
+    .navbar .container {
+        flex-direction: column; /* Apila los elementos de la barra de navegación verticalmente */
+        align-items: flex-start; /* Alinea los elementos a la izquierda */
+    }
+    .navbar-nav {
+        flex-direction: column; /* Apila los ítems del menú verticalmente */
+        width: 100%; /* Ocupa todo el ancho */
+        margin-top: 1rem; /* Espacio después de la marca */
+        gap: 0.5rem; /* Espacio reducido entre ítems del menú */
+    }
+    .navbar-nav li {
+        width: 100%; /* Cada ítem del menú ocupa todo el ancho */
+    }
+    .navbar-nav a {
+        display: block; /* Hace que los enlaces ocupen todo el ancho de su contenedor <li> */
+        padding: 0.6rem 0; /* Padding vertical para facilitar el toque */
+        font-size: 0.9rem; /* Restaura un poco el tamaño para legibilidad en móvil */
+    }
+    .navbar-nav a::after { /* Deshabilita el efecto de subrayado en móvil si se prefiere */
+        display: none;
+    }
+    .navbar-icons {
+        margin-top: 1rem; /* Espacio antes de los iconos */
+        align-self: flex-start; /* Alinea los iconos a la izquierda */
+    }
+
+    .hero {
+        padding: 3.5rem 0; /* Reduce el padding vertical en la sección hero */
+        border-radius: 0; /* Quita bordes redondeados en móvil si se ve mejor */
+    }
+    /* .hero h1 se ajusta con clamp() */
+    /* .hero p se ajusta con clamp() */
+
+    .featured-products h2 {
+        margin-bottom: 2rem; /* Reduce el margen inferior del título de productos */
+    }
+    .product-grid {
+        gap: 1.5rem; /* Reduce el espacio entre tarjetas de producto */
+    }
+
+    .footer-links {
+        grid-template-columns: 1fr; /* Apila las columnas de enlaces del footer */
+        text-align: center; /* Centra el texto de los enlaces del footer */
+    }
+    .footer-links h4 {
+        margin-top: 1rem; /* Espacio antes de cada título en móvil */
+    }
+    .footer-links ul li a:hover, .footer-links ul li a:focus {
+        padding-left: 0; /* Quita el desplazamiento en hover para móvil */
+    }
+
+    .footer-bottom {
+        flex-direction: column; /* Apila el copyright y los iconos sociales */
+        gap: 1.5rem; /* Espacio entre el copyright y los iconos */
+        text-align: center; /* Centra el texto del copyright */
+    }
+}
+
+/*
+ * NOTA SOBRE ICONOS:
+ * Los estilos .icon-*::before con 'content' y emojis son solo placeholders temporales.
+ * Se recomienda encarecidamente usar una librería de iconos SVG (FontAwesome, Bootstrap Icons, Material Icons)
+ * o SVGs individuales para una mejor calidad visual, accesibilidad y rendimiento en un sitio en producción.
+ * Estos placeholders no tienen buena semántica ni son bien interpretados por lectores de pantalla.
+ */
+/* Estilos para los iconos de placeholder (ya definidos en el HTML, aquí solo como recordatorio) */
+/*
 .icon-search::before,
 .icon-cart::before,
 .icon-user::before,
 .icon-facebook::before,
 .icon-twitter::before,
-.icon-instagram::before {
+.icon-instagram::before,
+.icon-youtube::before {
     display: inline-block;
-    font-style: normal;
-    font-variant: normal;
-    text-rendering: auto;
-    -webkit-font-smoothing: antialiased;
+    font-style: normal; // Asegura que no se apliquen estilos de fuente itálica
+    font-variant: normal; // Asegura que no se apliquen variantes de fuente como small-caps
+    text-rendering: auto; // Permite al navegador optimizar el renderizado de texto
+    -webkit-font-smoothing: antialiased; // Mejora el suavizado de fuentes en Webkit
 }
-
-/* Se recomienda usar una librería como FontAwesome, Bootstrap Icons, o SVGs directamente */
-/* Ejemplo de cómo se verían con contenido (ya están en el HTML temporalmente) */
-/* .icon-search::before { content: "🔍"; } */
-/* .icon-cart::before { content: "🛒"; } */
-/* .icon-user::before { content: "👤"; } */
-/* .icon-facebook::before { content: "📘"; } */
-/* .icon-twitter::before { content: "🐦"; } */
-/* .icon-instagram::before { content: "📸"; } */
-
-/* Mejoras responsive (básicas) */
-@media (max-width: 768px) {
-    .navbar .container {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    .navbar-nav {
-        flex-direction: column;
-        width: 100%;
-        margin-top: 1rem;
-        gap: 0.5rem;
-    }
-    .navbar-nav li {
-        width: 100%;
-    }
-    .navbar-nav a {
-        display: block;
-        padding: 0.5rem 0;
-    }
-    .navbar-icons {
-        margin-top: 1rem;
-    }
-
-    .hero h1 {
-        font-size: 2.2rem;
-    }
-    .hero p {
-        font-size: 1rem;
-    }
-
-    .footer-bottom {
-        flex-direction: column;
-        gap: 1rem;
-        text-align: center;
-    }
-}
+*/
