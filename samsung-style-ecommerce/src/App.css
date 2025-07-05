@@ -1,0 +1,165 @@
+/* Estilos globales para la aplicación */
+body {
+  font-family: 'SamsungOne', sans-serif; /* Idealmente, se cargaría la fuente SamsungOne */
+  line-height: 1.6;
+  color: #333;
+  background-color: #f8f9fa; /* Un gris muy claro para el fondo general */
+}
+
+/* Estilo para asegurar que el footer se quede abajo */
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex-grow: 1;
+}
+
+
+/* Mejoras visuales inspiradas en Samsung */
+.navbar {
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.navbar-brand {
+  font-weight: 700; /* Fuente más gruesa para la marca */
+  font-size: 1.5rem;
+}
+
+.nav-link {
+  font-weight: 500; /* Ligeramente más grueso para los enlaces de navegación */
+}
+
+.btn-primary {
+  background-color: #007bff; /* Azul primario de Bootstrap, similar al de Samsung */
+  border-color: #007bff;
+  font-weight: 500;
+  transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3; /* Un azul más oscuro al pasar el mouse */
+  border-color: #0056b3;
+}
+
+.btn-outline-primary {
+  border-color: #007bff;
+  color: #007bff;
+  font-weight: 500;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.btn-outline-primary:hover {
+  background-color: #007bff;
+  color: #fff;
+}
+
+
+.card {
+  border: 1px solid #e0e0e0; /* Borde sutil para las tarjetas */
+  border-radius: 0.5rem; /* Bordes ligeramente redondeados */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05); /* Sombra suave */
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-5px); /* Ligera elevación al pasar el mouse */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.card-title {
+  font-weight: 600; /* Títulos de tarjeta más prominentes */
+  color: #1d1d1f; /* Un negro ligeramente más suave */
+}
+
+.footer {
+  background-color: #e9ecef; /* Un gris un poco más oscuro para el footer */
+  border-top: 1px solid #dee2e6;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.footer a {
+    color: #007bff;
+}
+
+.footer a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+/* Icono del carrito (si usas Bootstrap Icons) */
+/* Necesitarás instalar bootstrap-icons: npm install bootstrap-icons */
+/* E importarlo en index.tsx o App.tsx: import 'bootstrap-icons/font/bootstrap-icons.css'; */
+.bi-cart {
+  font-size: 1.2rem;
+  margin-right: 0.3rem;
+  vertical-align: middle; /* Alinea mejor el icono con el texto */
+}
+
+/* Estilos para la página de detalles del producto */
+.product-detail-image {
+    max-height: 500px;
+    object-fit: contain;
+    border-radius: 0.5rem;
+    background-color: #fff; /* Fondo blanco para la imagen del producto */
+    padding: 1rem;
+    border: 1px solid #e0e0e0;
+}
+
+/* Placeholder para la fuente SamsungOne - se necesitaría cargarla via @font-face */
+/* @font-face {
+  font-family: 'SamsungOne';
+  src: url('/path/to/samsungone-regular.woff2') format('woff2'),
+       url('/path/to/samsungone-regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'SamsungOne';
+  src: url('/path/to/samsungone-bold.woff2') format('woff2'),
+       url('/path/to/samsungone-bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+} */
+
+h1, h2, h3, h4, h5, h6 {
+  /* font-family: 'SamsungOne', sans-serif; */ /* Aplicar a todos los encabezados si la fuente está disponible */
+  color: #1d1d1f; /* Color oscuro para los encabezados */
+}
+
+h1 {
+    font-weight: 700; /* H1 más prominente */
+}
+
+h2 {
+    font-weight: 600; /* H2 también prominente */
+    margin-bottom: 1rem;
+}
+
+/* Ajustes para que el contenido no se pegue a los bordes en pantallas pequeñas */
+.container, .container-fluid {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Estilos para el Header, específicamente para el ícono del carrito */
+.navbar .nav-link .bi-cart {
+    font-size: 1.4rem; /* Tamaño del ícono del carrito en la barra de navegación */
+    position: relative; /* Para posible badge de conteo */
+}
+/* Si quieres añadir un contador de items al carrito */
+/* .cart-badge {
+    position: absolute;
+    top: -5px;
+    right: -10px;
+    padding: 0.2em 0.4em;
+    font-size: 0.75rem;
+    font-weight: bold;
+    line-height: 1;
+    color: #fff;
+    background-color: red;
+    border-radius: 50%;
+} */
