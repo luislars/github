@@ -376,6 +376,238 @@ footer {
 }
 
 /* -------------------------------------------------------------------------- */
+/*                  ESTILOS PARA EL CONMUTADOR DE TEMA                        */
+/* -------------------------------------------------------------------------- */
+
+/* Contenedor que agrupa los iconos de la navbar y el conmutador de tema */
+.navbar-controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem; /* Espacio entre el grupo de iconos y el conmutador de tema */
+}
+
+.theme-toggle-btn {
+    background: none;
+    border: 1px solid transparent; /* Borde transparente para mantener el layout */
+    color: var(--text-color-secondary); /* Usa variable CSS para color */
+    cursor: pointer;
+    font-size: 1.25rem; /* Tamaño del icono dentro del botón */
+    padding: 0.3rem; /* Padding pequeño para el área de clic */
+    border-radius: 50%; /* Hace el botón circular */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.3s ease, background-color 0.3s ease, transform 0.2s ease;
+}
+
+.theme-toggle-btn:hover, .theme-toggle-btn:focus {
+    color: var(--primary-color); /* Color primario al hacer hover/focus */
+    background-color: rgba(0, 0, 0, 0.05); /* Fondo sutil al hacer hover */
+    outline: none; /* Quita el outline por defecto en focus, si se desea un estilo custom */
+}
+.theme-toggle-btn:active {
+    transform: scale(0.9); /* Efecto de "presionado" */
+}
+
+/* -------------------------------------------------------------------------- */
+/*                             VARIABLES DE COLOR Y MODO OSCURO               */
+/* -------------------------------------------------------------------------- */
+
+:root {
+    /* Tema Claro (por defecto) */
+    --primary-color: #0072c6;
+    --primary-color-darker: #005ba1;
+    --background-color: #f8f9fa;
+    --surface-color: #ffffff; /* Color para superficies como tarjetas, navbar */
+    --text-color-primary: #1d1d1f;
+    --text-color-secondary: #4f4f4f;
+    --text-color-on-primary: #ffffff; /* Texto sobre fondos de color primario */
+    --text-color-on-dark: #a8a8b3; /* Texto claro sobre fondos oscuros (ej. footer) */
+    --text-color-on-dark-strong: #ffffff; /* Texto más fuerte sobre fondos oscuros */
+    --border-color: #dee2e6;
+    --border-color-darker: #c1c9d1;
+    --shadow-color-light: rgba(0, 0, 0, 0.08);
+    --shadow-color-medium: rgba(0, 0, 0, 0.1);
+    --hero-gradient-start: #001f3f;
+    --hero-gradient-end: #003366;
+    --footer-background: #1d1d1f;
+
+    /* Transición suave para todos los cambios de color y fondo */
+    --theme-transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+}
+
+body.dark-mode {
+    /* Tema Oscuro */
+    --primary-color: #0a84ff; /* Un azul más brillante para modo oscuro, similar a iOS */
+    --primary-color-darker: #0060df;
+    --background-color: #0d1117; /* Fondo muy oscuro, GitHub style */
+    --surface-color: #161b22;   /* Superficies ligeramente más claras que el fondo */
+    --text-color-primary: #c9d1d9; /* Texto principal claro */
+    --text-color-secondary: #8b949e; /* Texto secundario */
+    --text-color-on-primary: #ffffff;
+    --text-color-on-dark: #8b949e;
+    --text-color-on-dark-strong: #c9d1d9;
+    --border-color: #30363d;
+    --border-color-darker: #484f58;
+    --shadow-color-light: rgba(200, 200, 200, 0.05); /* Sombras muy sutiles en modo oscuro */
+    --shadow-color-medium: rgba(200, 200, 200, 0.08);
+    --hero-gradient-start: #1a2a3a;
+    --hero-gradient-end: #0d1117;
+    --footer-background: #0d1117; /* Footer coincide con el fondo general oscuro */
+}
+
+/* Aplicar transiciones a los elementos afectados por el cambio de tema */
+body, .navbar, .product-card, footer, .btn-secondary {
+    transition: var(--theme-transition);
+}
+
+/* Ajustes específicos para elementos en modo claro/oscuro usando variables */
+body {
+    background-color: var(--background-color);
+    color: var(--text-color-primary);
+}
+
+.navbar {
+    background-color: var(--surface-color);
+    box-shadow: 0 1px 3px var(--shadow-color-light);
+}
+.navbar-brand {
+    color: var(--text-color-primary);
+}
+.navbar-brand:hover, .navbar-brand:focus {
+    color: var(--primary-color);
+}
+.navbar-nav a {
+    color: var(--text-color-secondary);
+}
+.navbar-nav a:hover, .navbar-nav a:focus,
+.navbar-nav a:hover::after, .navbar-nav a:focus::after {
+    color: var(--primary-color);
+    background-color: var(--primary-color); /* Para el ::after */
+}
+.navbar-icons a {
+    color: var(--text-color-secondary);
+}
+.navbar-icons a:hover, .navbar-icons a:focus {
+    color: var(--primary-color);
+}
+
+.hero {
+    background: linear-gradient(to right, var(--hero-gradient-start), var(--hero-gradient-end));
+    color: var(--text-color-on-dark-strong); /* El texto en hero siempre es claro */
+    box-shadow: 0 4px 10px var(--shadow-color-medium);
+}
+.hero p {
+    opacity: 0.9;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: var(--text-color-on-primary);
+}
+.btn-primary:hover, .btn-primary:focus {
+    background-color: var(--primary-color-darker);
+}
+
+.btn-secondary {
+    color: var(--text-color-primary);
+    border-color: var(--border-color);
+}
+.btn-secondary:hover, .btn-secondary:focus {
+    background-color: var(--surface-color); /* Un color de fondo sutil al hacer hover */
+    color: var(--primary-color);
+    border-color: var(--border-color-darker);
+}
+body.dark-mode .btn-secondary:hover, body.dark-mode .btn-secondary:focus {
+    background-color: rgba(255, 255, 255, 0.05); /* Fondo más sutil en modo oscuro */
+}
+
+
+.featured-products h2 {
+    color: var(--text-color-primary);
+}
+
+.product-card {
+    background-color: var(--surface-color);
+    box-shadow: 0 5px 15px var(--shadow-color-light);
+}
+.product-card:hover {
+    box-shadow: 0 10px 25px var(--shadow-color-medium);
+}
+.product-card img {
+    background-color: var(--background-color); /* El fondo de la imagen coincide con el fondo general */
+}
+.product-card h3 {
+    color: var(--text-color-primary);
+}
+.product-card p {
+    color: var(--text-color-secondary);
+}
+
+footer {
+    background-color: var(--footer-background);
+    color: var(--text-color-on-dark);
+}
+.footer-links h4 {
+    color: var(--text-color-on-dark-strong);
+}
+.footer-links ul li a {
+    color: var(--text-color-on-dark);
+}
+.footer-links ul li a:hover, .footer-links ul li a:focus {
+    color: var(--text-color-on-dark-strong);
+}
+.footer-bottom {
+    border-top-color: var(--border-color); /* Borde más oscuro en modo oscuro */
+}
+.social-icons a {
+    color: var(--text-color-on-dark);
+}
+.social-icons a:hover, .social-icons a:focus {
+    color: var(--text-color-on-dark-strong);
+}
+
+
+/* -------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+/*                                 ANIMACIONES SUTILES                        */
+/* -------------------------------------------------------------------------- */
+
+/* Animación de Fade-in para secciones */
+.fade-in-section {
+    opacity: 0;
+    transform: translateY(20px); /* Comienza ligeramente abajo */
+    animation: fadeIn 0.7s 0.2s ease-out forwards; /* delay de 0.2s por defecto */
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Aplicar delay escalonado a secciones subsiguientes */
+/* .hero.fade-in-section tiene el delay por defecto de 0.2s */
+.featured-products.fade-in-section {
+    animation-delay: 0.4s; /* Un poco más tarde que el hero */
+}
+footer.fade-in-section { /* Footer también puede tener un fade-in */
+    animation-delay: 0.6s;
+}
+
+/* Transición mejorada para el botón dentro de la tarjeta de producto */
+.product-card .btn {
+    /* La transición base ya está en .btn, aquí nos aseguramos que incluya transform */
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease-out, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.product-card:hover .btn { /* Efecto sutil en el botón cuando se hace hover en la tarjeta */
+    transform: scale(1.03); /* Ligero escalado del botón */
+}
+
+
+/* -------------------------------------------------------------------------- */
 /*                             ESTILOS RESPONSIVE                             */
 /* -------------------------------------------------------------------------- */
 
@@ -387,13 +619,29 @@ footer {
     .navbar-nav a {
         font-size: 0.85rem; /* Reduce tamaño de fuente del menú */
     }
+    .navbar-controls { /* Ajuste para que el conmutador no cause problemas */
+        gap: 0.8rem;
+    }
+    .product-grid {
+        gap: 2rem; /* Un poco más de espacio en tablets */
+    }
 }
 
 /* Para móviles */
 @media (max-width: 768px) {
+    .container {
+        padding-left: 15px; /* Reduce el padding lateral del contenedor principal en móviles */
+        padding-right: 15px;
+    }
     .navbar .container {
         flex-direction: column; /* Apila los elementos de la barra de navegación verticalmente */
         align-items: flex-start; /* Alinea los elementos a la izquierda */
+    }
+    .navbar-controls { /* El grupo de iconos y conmutador se mueve debajo del menú en móviles */
+        width: 100%;
+        display: flex;
+        justify-content: space-between; /* Para espaciar los iconos de la navbar del conmutador */
+        margin-top: 0.8rem;
     }
     .navbar-nav {
         flex-direction: column; /* Apila los ítems del menú verticalmente */
@@ -412,9 +660,9 @@ footer {
     .navbar-nav a::after { /* Deshabilita el efecto de subrayado en móvil si se prefiere */
         display: none;
     }
-    .navbar-icons {
-        margin-top: 1rem; /* Espacio antes de los iconos */
-        align-self: flex-start; /* Alinea los iconos a la izquierda */
+    .navbar-icons { /* Ya no necesita margen superior porque navbar-controls lo maneja */
+        margin-top: 0;
+        /* align-self: flex-start;  No es necesario si navbar-controls es flex y space-between */
     }
 
     .hero {

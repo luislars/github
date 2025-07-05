@@ -35,11 +35,17 @@
                     <li><a href="#ofertas">Ofertas</a></li> <!-- Enlace a la sección de ofertas -->
                 </ul>
 
-                <!-- Iconos de Navegación Auxiliar (Búsqueda, Carrito, Usuario) -->
-                <div class="navbar-icons">
-                    <a href="#" aria-label="Buscar"><i class="icon-search"></i></a> <!-- Icono de búsqueda. aria-label proporciona una descripción para lectores de pantalla, mejorando la accesibilidad -->
-                    <a href="#" aria-label="Carrito"><i class="icon-cart"></i></a> <!-- Icono de carrito de compras -->
-                    <a href="#" aria-label="Usuario"><i class="icon-user"></i></a> <!-- Icono de perfil de usuario o inicio de sesión -->
+                <!-- Iconos de Navegación Auxiliar (Búsqueda, Carrito, Usuario) y Conmutador de Tema -->
+                <div class="navbar-controls"> <!-- Contenedor renombrado para incluir el conmutador -->
+                    <div class="navbar-icons">
+                        <a href="#" aria-label="Buscar"><i class="icon-search"></i></a> <!-- Icono de búsqueda. aria-label proporciona una descripción para lectores de pantalla, mejorando la accesibilidad -->
+                        <a href="#" aria-label="Carrito"><i class="icon-cart"></i></a> <!-- Icono de carrito de compras -->
+                        <a href="#" aria-label="Usuario"><i class="icon-user"></i></a> <!-- Icono de perfil de usuario o inicio de sesión -->
+                    </div>
+                    <!-- Conmutador de Modo Oscuro/Claro -->
+                    <button id="theme-toggle" class="theme-toggle-btn" aria-label="Activar modo oscuro" title="Activar modo oscuro">
+                        <i class="icon-moon"></i> <!-- Icono inicial (luna para modo oscuro) -->
+                    </button>
                 </div>
             </div>
         </nav>
@@ -49,7 +55,7 @@
     <!-- Aquí va el contenido más importante y único de esta página en particular -->
     <main>
         <!-- Sección Hero (Banner Principal de bienvenida o producto destacado) -->
-        <section id="inicio" class="hero"> <!-- id="inicio" permite que el enlace del menú "Inicio" lleve directamente a esta sección -->
+        <section id="inicio" class="hero fade-in-section"> <!-- id="inicio" permite que el enlace del menú "Inicio" lleve directamente a esta sección -->
             <div class="container">
                 <h1>Descubre la Innovación</h1> <!-- Título principal y llamativo de la sección hero -->
                 <p>Explora lo último en tecnología y lleva tu vida al siguiente nivel.</p> <!-- Subtítulo o descripción breve que complementa al título -->
@@ -58,7 +64,7 @@
         </section>
 
         <!-- Sección de Productos Destacados -->
-        <section id="featured-products" class="featured-products"> <!-- id="featured-products" para anclaje desde el botón "Ver Productos" u otros enlaces -->
+        <section id="featured-products" class="featured-products fade-in-section"> <!-- id="featured-products" para anclaje desde el botón "Ver Productos" u otros enlaces -->
             <div class="container">
                 <h2>Productos Destacados</h2> <!-- Título de la sección -->
                 <!-- Cuadrícula (Grid) para mostrar los productos de forma organizada -->
@@ -94,7 +100,7 @@
 
     <!-- Pie de Página (Footer) -->
     <!-- Contiene información secundaria, enlaces de utilidad, copyright, etc. -->
-    <footer>
+    <footer class="fade-in-section">
         <div class="container">
             <!-- Sección de Enlaces del Pie de Página, usualmente organizada en columnas para mejor legibilidad -->
             <div class="footer-links">
@@ -166,6 +172,9 @@
         .icon-twitter::before  { content: "🐦"; font-size: 1.2em; vertical-align: middle; } /* Placeholder para icono de Twitter */
         .icon-instagram::before{ content: "📸"; font-size: 1.2em; vertical-align: middle; } /* Placeholder para icono de Instagram */
         .icon-youtube::before  { content: "▶️"; font-size: 1.2em; vertical-align: middle; } /* Placeholder para icono de YouTube (añadido) */
+        .icon-moon::before     { content: "🌙"; font-size: 1.1em; vertical-align: middle; } /* Placeholder para icono de luna (modo oscuro) */
+        .icon-sun::before      { content: "☀️"; font-size: 1.1em; vertical-align: middle; } /* Placeholder para icono de sol (modo claro) */
     </style>
+    <script src="script.js"></script> <!-- Enlace al archivo JavaScript -->
 </body>
 </html>
