@@ -77,4 +77,78 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     });
+
+    // Lógica para el Modal de Contacto
+    const contactModal = document.getElementById('contact-modal');
+    const contactLink = document.getElementById('contact-link');
+    const closeModalButton = contactModal ? contactModal.querySelector('.modal-close') : null;
+    const contactForm = document.getElementById('contact-form');
+
+    // Comprobaciones para los elementos del modal
+    if (!contactModal) {
+        console.warn('Advertencia: El elemento del modal de contacto con ID "contact-modal" no fue encontrado.');
+    }
+    if (!contactLink) {
+        console.warn('Advertencia: El enlace para abrir el modal de contacto con ID "contact-link" no fue encontrado.');
+    }
+    if (contactModal && !closeModalButton) {
+        console.warn('Advertencia: El botón de cierre del modal (con clase "modal-close") no fue encontrado dentro de #contact-modal.');
+    }
+    if (!contactForm) {
+        console.warn('Advertencia: El formulario de contacto con ID "contact-form" no fue encontrado.');
+    }
+
+    // Función para abrir el modal
+    function openModal() {
+        if (contactModal) {
+            contactModal.classList.add('is-open');
+            // Opcional: enfocar el primer campo del formulario al abrir
+            const firstInput = contactModal.querySelector('input, textarea');
+            if (firstInput) {
+                firstInput.focus();
+            }
+        }
+    }
+
+    // Función para cerrar el modal
+    function closeModal() {
+        if (contactModal) {
+            contactModal.classList.remove('is-open');
+        }
+    }
+
+    // Event listener para abrir el modal
+    if (contactLink) {
+        contactLink.addEventListener('click', (event) => {
+            event.preventDefault(); // Prevenir el comportamiento por defecto del enlace (#)
+            openModal();
+        });
+    }
+
+    // Event listener para cerrar el modal con el botón 'X'
+    if (closeModalButton) {
+        closeModalButton.addEventListener('click', closeModal);
+    }
+
+    // Event listener para cerrar el modal haciendo clic fuera de modal-content
+    if (contactModal) {
+        contactModal.addEventListener('click', (event) => {
+            // Si el clic fue directamente sobre el fondo del modal (y no en su contenido)
+            if (event.target === contactModal) {
+                closeModal();
+            }
+        });
+    }
+
+    // Event listener para el envío del formulario (por ahora solo cierra el modal)
+    if (contactForm) {
+        contactForm.addEventListener('submit', (event) => {
+            event.preventDefault(); // Prevenir el envío real del formulario
+            // Aquí iría la lógica de envío de datos del formulario (AJAX, etc.)
+            // Por ahora, solo mostramos un mensaje y cerramos el modal.
+            alert('Mensaje enviado (simulación). ¡Gracias por contactarnos!');
+            closeModal();
+            contactForm.reset(); // Limpiar el formulario
+        });
+    }
 });

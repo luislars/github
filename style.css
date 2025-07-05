@@ -728,6 +728,148 @@ footer.fade-in-section { /* Footer también puede tener un fade-in */
 
 
 /* -------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+/*                             MODAL DE CONTACTO                              */
+/* -------------------------------------------------------------------------- */
+
+/* Contenedor principal del modal (fondo oscuro superpuesto) */
+.modal {
+    display: none; /* Oculto por defecto */
+    position: fixed; /* Se mantiene fijo en la pantalla */
+    z-index: 2000; /* Por encima de otros contenidos, incluida la navbar */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* Permite scroll si el contenido del modal es muy largo */
+    background-color: rgba(0, 0, 0, 0.6); /* Fondo negro semi-transparente */
+    opacity: 0; /* Para animación de fade-in */
+    visibility: hidden;
+    transition: opacity 0.3s ease-out, visibility 0.3s ease-out;
+}
+
+.modal.is-open {
+    display: flex; /* Usar flex para centrar el modal-content */
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Contenido del modal (la ventana/caja blanca) */
+.modal-content {
+    background-color: var(--surface-color);
+    color: var(--text-color-primary);
+    margin: auto; /* Necesario para centrar con display:flex en .modal */
+    padding: 25px 30px;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    width: 90%;
+    max-width: 500px; /* Ancho máximo del modal */
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    position: relative; /* Para posicionar el botón de cierre absoluto a este contenedor */
+    transform: translateY(-30px) scale(0.95); /* Estado inicial para animación de aparición */
+    transition: transform 0.3s ease-out;
+}
+
+.modal.is-open .modal-content {
+    transform: translateY(0) scale(1); /* Estado final de la animación de aparición */
+}
+
+/* Botón de cierre del modal (la 'X') */
+.modal-close {
+    color: var(--text-color-secondary);
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    line-height: 1; /* Asegura que la 'X' esté bien centrada */
+}
+
+.modal-close:hover,
+.modal-close:focus {
+    color: var(--text-color-primary);
+    text-decoration: none;
+    outline: none;
+}
+
+.modal-content h2 {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-color-primary);
+    text-align: center;
+}
+
+/* Estilos para los grupos de formulario (label + input/textarea) */
+.form-group {
+    margin-bottom: 1.2rem;
+}
+
+.form-group label {
+    display: block; /* Hace que el label ocupe su propia línea */
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--text-color-secondary);
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.95rem;
+    background-color: var(--background-color); /* Fondo sutil para los inputs */
+    color: var(--text-color-primary);
+    transition: border-color 0.2s ease-out, box-shadow 0.2s ease-out;
+}
+body.dark-mode .form-group input[type="text"],
+body.dark-mode .form-group input[type="email"],
+body.dark-mode .form-group textarea {
+    background-color: var(--surface-color); /* En modo oscuro, los inputs pueden tener el color de superficie */
+    border-color: var(--border-color-darker);
+}
+
+
+.form-group input[type="text"]:focus,
+.form-group input[type="email"]:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(var(--primary-color-rgb, 0, 114, 198), 0.25); /* Necesitaríamos --primary-color-rgb para esto */
+}
+
+/* Ajuste para el box-shadow en focus, usando un color fijo si no tenemos RGB de la variable */
+:root {
+    --primary-color-focus-shadow: rgba(0, 114, 198, 0.25);
+}
+body.dark-mode {
+    --primary-color-focus-shadow: rgba(10, 132, 255, 0.25);
+}
+.form-group input[type="text"]:focus,
+.form-group input[type="email"]:focus,
+.form-group textarea:focus {
+    box-shadow: 0 0 0 3px var(--primary-color-focus-shadow);
+}
+
+
+.modal-content .btn-primary {
+    display: block; /* Hace que el botón ocupe todo el ancho */
+    width: 100%;
+    padding: 0.8rem; /* Un poco más de padding para el botón del modal */
+    font-size: 1rem;
+}
+
+
+/* -------------------------------------------------------------------------- */
 /*                             ESTILOS RESPONSIVE                             */
 /* -------------------------------------------------------------------------- */
 

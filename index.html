@@ -92,7 +92,8 @@
                     <!-- Tarjeta de Producto Individual (Ejemplo 1) -->
                     <!-- La etiqueta <article> es semánticamente adecuada para contenido auto-contenido como una tarjeta de producto -->
                     <article class="product-card">
-                        <img src="https://via.placeholder.com/300x200?text=Producto+1" alt="Teléfono Móvil Galaxy S24 Ultra con IA"> <!-- Imagen del producto. El atributo alt es crucial para la accesibilidad y SEO, describiendo la imagen -->
+                        <!-- TODO: Reemplazar con la ruta a la imagen real del producto, ej: images/products/galaxy-s24-ultra.jpg -->
+                        <img src="https://via.placeholder.com/300x220?text=Galaxy+S24+Ultra" alt="Teléfono Móvil Galaxy S24 Ultra con IA"> <!-- Imagen del producto. El atributo alt es crucial para la accesibilidad y SEO, describiendo la imagen -->
                         <h3>Galaxy S24 Ultra</h3> <!-- Nombre del producto -->
                         <p>El poder de la IA en tus manos.</p> <!-- Descripción corta y atractiva del producto -->
                         <a href="#" class="btn btn-secondary">Más Información</a> <!-- Botón para ver más detalles del producto específico -->
@@ -100,7 +101,8 @@
 
                     <!-- Tarjeta de Producto Individual (Ejemplo 2) -->
                     <article class="product-card">
-                        <img src="https://via.placeholder.com/300x200?text=Producto+2" alt="Televisor Neo QLED 8K de alta resolución">
+                        <!-- TODO: Reemplazar con la ruta a la imagen real del producto, ej: images/products/neo-qled-8k.jpg -->
+                        <img src="https://via.placeholder.com/300x220?text=Neo+QLED+8K" alt="Televisor Neo QLED 8K de alta resolución">
                         <h3>Neo QLED 8K</h3>
                         <p>Imágenes que desafían la realidad.</p>
                         <a href="#" class="btn btn-secondary">Más Información</a>
@@ -108,7 +110,8 @@
 
                     <!-- Tarjeta de Producto Individual (Ejemplo 3) -->
                     <article class="product-card">
-                        <img src="https://via.placeholder.com/300x200?text=Producto+3" alt="Lavadora Bespoke AI con diseño personalizable e inteligencia artificial">
+                        <!-- TODO: Reemplazar con la ruta a la imagen real del producto, ej: images/products/bespoke-ai-lavadora.jpg -->
+                        <img src="https://via.placeholder.com/300x220?text=Bespoke+AI+Lavadora" alt="Lavadora Bespoke AI con diseño personalizable e inteligencia artificial">
                         <h3>Bespoke AI Lavadora</h3>
                         <p>Lavado inteligente, vida fácil.</p>
                         <a href="#" class="btn btn-secondary">Más Información</a>
@@ -140,7 +143,7 @@
                 <div>
                     <h4>Soporte</h4>
                     <ul>
-                        <li><a href="#">Contacto</a></li>
+                        <li><a href="#" id="contact-link">Contacto</a></li> <!-- Enlace para abrir el modal de contacto -->
                         <li><a href="#">Soporte de Producto</a></li>
                         <li><a href="#">Manuales y Descargas</a></li> <!-- Enlace adicional -->
                         <li><a href="#">Garantía</a></li>
@@ -179,6 +182,29 @@
     <a href="https://wa.me/573142700201" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp">
         <i class="bi bi-whatsapp"></i>
     </a>
+
+    <!-- Modal de Contacto -->
+    <div id="contact-modal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" aria-label="Cerrar modal">&times;</button>
+            <h2>Contáctanos</h2>
+            <form id="contact-form">
+                <div class="form-group">
+                    <label for="contact-name">Nombre:</label>
+                    <input type="text" id="contact-name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="contact-email">Correo Electrónico:</label>
+                    <input type="email" id="contact-email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="contact-message">Mensaje:</label>
+                    <textarea id="contact-message" name="message" rows="4" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
+            </form>
+        </div>
+    </div>
 
     <script src="script.js"></script> <!-- Enlace al archivo JavaScript -->
 </body>
