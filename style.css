@@ -72,6 +72,84 @@ ul {
 /* -------------------------------------------------------------------------- */
 /*                             ENCABEZADO Y NAVEGACIÓN                        */
 /* -------------------------------------------------------------------------- */
+
+/* ----- ESTILOS PARA MENÚS DESPLEGABLES (DROPDOWNS) ----- */
+
+/* Contenedor del ítem de navegación que tendrá un menú desplegable. */
+.nav-item-dropdown {
+    position: relative; /* Permite que el .dropdown-menu se posicione absolutamente con respecto a este elemento. */
+}
+
+/* Estilos para el icono indicador de desplegable (flecha hacia abajo) */
+.dropdown-indicator {
+    font-size: 0.7em; /* Hace el icono un poco más pequeño que el texto del enlace */
+    margin-left: 0.3rem;
+    transition: transform 0.3s ease-out; /* Para animar la rotación de la flecha */
+}
+
+.nav-item-dropdown:hover .dropdown-indicator {
+    transform: rotate(180deg); /* Rota la flecha cuando se hace hover sobre el ítem principal */
+}
+
+/* Estilos para el menú desplegable */
+.dropdown-menu {
+    display: none; /* Oculto por defecto */
+    position: absolute; /* Posicionamiento absoluto respecto al .nav-item-dropdown */
+    top: 100%; /* Se posiciona justo debajo del ítem del menú principal */
+    left: 0;
+    background-color: var(--surface-color); /* Usa la variable de color de superficie */
+    border: 1px solid var(--border-color);
+    border-top: none; /* Evita doble borde con la navbar si la sombra no es suficiente */
+    border-radius: 0 0 8px 8px; /* Bordes redondeados solo en la parte inferior */
+    box-shadow: 0 4px 12px var(--shadow-color-light); /* Sombra sutil para el desplegable */
+    padding: 0.5rem 0; /* Padding vertical */
+    min-width: 200px; /* Ancho mínimo para el desplegable */
+    z-index: 1010; /* Debe estar por encima de la navbar y otros elementos */
+    opacity: 0; /* Comienza transparente para la animación */
+    visibility: hidden; /* Oculto para accesibilidad y para que no interfiera */
+    transform: translateY(10px); /* Comienza ligeramente abajo para la animación */
+    transition: opacity 0.3s ease-out, visibility 0.3s ease-out, transform 0.3s ease-out;
+}
+
+/* Muestra el menú desplegable cuando se hace hover sobre el .nav-item-dropdown */
+.nav-item-dropdown:hover > .dropdown-menu {
+    display: block; /* Lo hace visible */
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Estilos para los ítems dentro del menú desplegable */
+.dropdown-menu li a {
+    display: block; /* Hace que cada enlace ocupe todo el ancho */
+    padding: 0.6rem 1.2rem; /* Padding para cada enlace del desplegable */
+    color: var(--text-color-secondary); /* Color de texto */
+    font-size: 0.85rem; /* Tamaño de fuente */
+    text-transform: none; /* Quita el uppercase si estaba en los enlaces principales */
+    letter-spacing: normal; /* Restaura el espaciado de letras normal */
+    white-space: nowrap; /* Evita que el texto del enlace se parta en múltiples líneas */
+    transition: color 0.2s ease-out, background-color 0.2s ease-out; /* Añadida transición para suavidad */
+}
+
+.dropdown-menu li a:hover, .dropdown-menu li a:focus {
+    background-color: rgba(0, 0, 0, 0.05); /* Fondo de hover muy sutil, se ajustará para modo oscuro */
+    color: var(--primary-color); /* El texto cambia al color primario */
+}
+
+body.dark-mode .dropdown-menu li a:hover,
+body.dark-mode .dropdown-menu li a:focus {
+    background-color: rgba(255, 255, 255, 0.08); /* Fondo de hover sutil para modo oscuro */
+}
+
+
+/* Eliminar el pseudo-elemento ::after (subrayado animado) de los enlaces principales que tienen desplegable, si se desea */
+.nav-item-dropdown > a::after {
+    display: none; /* Opcional: quitar el subrayado animado si interfiere con el look del desplegable */
+}
+
+/* ----- FIN DE ESTILOS PARA MENÚS DESPLEGABLES ----- */
+
+
 .navbar {
     background-color: #ffffff; /* Fondo blanco para la barra de navegación */
     padding: 0.8rem 0; /* Padding vertical reducido para un look más compacto */
@@ -132,8 +210,9 @@ ul {
 }
 
 .navbar-nav a:hover, .navbar-nav a:focus {
-    color: #0072c6; /* Color del texto al pasar el ratón o enfocar */
+    color: var(--primary-color); /* Color del texto al pasar el ratón o enfocar, usando variable */
     text-decoration: none; /* Asegura que no haya otro subrayado */
+    background-color: transparent !important; /* Asegura que el fondo del enlace no cambie */
 }
 
 .navbar-icons {
@@ -610,6 +689,41 @@ footer.fade-in-section { /* Footer también puede tener un fade-in */
 
 .product-card:hover .btn { /* Efecto sutil en el botón cuando se hace hover en la tarjeta */
     transform: scale(1.03); /* Ligero escalado del botón */
+}
+
+
+/* -------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+/*                       BOTÓN FLOTANTE DE WHATSAPP                           */
+/* -------------------------------------------------------------------------- */
+
+/* Estilos para el botón flotante de WhatsApp. */
+.whatsapp-float {
+    position: fixed; /* Se mantiene fijo en la pantalla incluso al hacer scroll. */
+    width: 60px; /* Ancho del botón. */
+    height: 60px; /* Alto del botón. */
+    bottom: 30px; /* Distancia desde el borde inferior de la ventana. */
+    right: 30px; /* Distancia desde el borde derecho de la ventana. */
+    background-color: #25D366; /* Color verde oficial de WhatsApp. */
+    color: #FFF; /* Color del icono de WhatsApp (blanco). */
+    border-radius: 50%; /* Hace que el botón sea perfectamente circular. */
+    text-align: center; /* Centra el icono horizontalmente (útil si el icono fuera texto). */
+    font-size: 30px; /* Tamaño del icono de WhatsApp. Ajustar según el icono usado. */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Sombra sutil para dar profundidad. */
+    z-index: 1000; /* Asegura que esté por encima de la mayoría de los otros elementos (igual que la navbar). */
+    display: flex; /* Permite centrar el icono fácilmente con align-items y justify-content. */
+    align-items: center; /* Centra el icono verticalmente. */
+    justify-content: center; /* Centra el icono horizontalmente. */
+    transition: transform 0.3s ease-out, background-color 0.3s ease-out; /* Transiciones suaves para efectos hover. */
+}
+
+/* Efectos al pasar el cursor o enfocar el botón de WhatsApp. */
+.whatsapp-float:hover, .whatsapp-float:focus {
+    transform: scale(1.1) translateY(-3px); /* Agranda ligeramente el botón y lo eleva un poco. */
+    background-color: #1DAE54; /* Un verde ligeramente más oscuro para el estado hover/focus. */
+    color: #FFF; /* Mantiene el color del icono (blanco). */
+    text-decoration: none; /* Asegura que no haya subrayado si el icono está dentro de un <a>. */
+    outline: none; /* Quita el outline por defecto en focus si se desea un estilo personalizado. */
 }
 
 

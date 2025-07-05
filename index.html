@@ -14,6 +14,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <!-- Establece una conexión temprana con el servidor de Google Fonts (gstatic) usando crossorigin para permitir la carga de recursos de diferentes orígenes -->
     <!-- Importación de las familias de fuentes Roboto y Poppins de Google Fonts con diferentes pesos (grosor) -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Enlace CDN para Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 <body>
     <!-- Encabezado Principal de la página (Header) -->
@@ -28,8 +30,26 @@
                 <!-- Lista de Enlaces de Navegación Principal -->
                 <ul class="navbar-nav">
                     <li><a href="#inicio">Inicio</a></li> <!-- Enlace interno a la sección de inicio (id="inicio") -->
-                    <li><a href="#moviles">Móviles</a></li> <!-- Enlace a la sección de móviles -->
-                    <li><a href="#tv-av">TV & AV</a></li> <!-- Enlace a la sección de TV y Audio/Video -->
+                    <li class="nav-item-dropdown">
+                        <a href="#moviles">Móviles <i class="bi bi-chevron-down dropdown-indicator"></i></a> <!-- Enlace a la sección de móviles con indicador de desplegable -->
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Smartphones Galaxy S</a></li>
+                            <li><a href="#">Smartphones Galaxy A</a></li>
+                            <li><a href="#">Smartphones Plegables</a></li>
+                            <li><a href="#">Tablets</a></li>
+                            <li><a href="#">Accesorios Móviles</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item-dropdown">
+                        <a href="#tv-av">TV & AV <i class="bi bi-chevron-down dropdown-indicator"></i></a> <!-- Enlace a la sección de TV y Audio/Video con indicador -->
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Televisores Neo QLED</a></li>
+                            <li><a href="#">Televisores OLED</a></li>
+                            <li><a href="#">Proyectores</a></li>
+                            <li><a href="#">Barras de Sonido</a></li>
+                            <li><a href="#">Accesorios TV/AV</a></li>
+                        </ul>
+                    </li>
                     <li><a href="#electrodomesticos">Electrodomésticos</a></li> <!-- Enlace a la sección de electrodomésticos -->
                     <li><a href="#informatica">Informática</a></li> <!-- Enlace a la sección de informática -->
                     <li><a href="#ofertas">Ofertas</a></li> <!-- Enlace a la sección de ofertas -->
@@ -38,13 +58,13 @@
                 <!-- Iconos de Navegación Auxiliar (Búsqueda, Carrito, Usuario) y Conmutador de Tema -->
                 <div class="navbar-controls"> <!-- Contenedor renombrado para incluir el conmutador -->
                     <div class="navbar-icons">
-                        <a href="#" aria-label="Buscar"><i class="icon-search"></i></a> <!-- Icono de búsqueda. aria-label proporciona una descripción para lectores de pantalla, mejorando la accesibilidad -->
-                        <a href="#" aria-label="Carrito"><i class="icon-cart"></i></a> <!-- Icono de carrito de compras -->
-                        <a href="#" aria-label="Usuario"><i class="icon-user"></i></a> <!-- Icono de perfil de usuario o inicio de sesión -->
+                        <a href="#" aria-label="Buscar"><i class="bi bi-search"></i></a> <!-- Icono Bootstrap: Búsqueda -->
+                        <a href="#" aria-label="Carrito"><i class="bi bi-cart3"></i></a> <!-- Icono Bootstrap: Carrito -->
+                        <a href="#" aria-label="Usuario"><i class="bi bi-person-circle"></i></a> <!-- Icono Bootstrap: Usuario -->
                     </div>
                     <!-- Conmutador de Modo Oscuro/Claro -->
                     <button id="theme-toggle" class="theme-toggle-btn" aria-label="Activar modo oscuro" title="Activar modo oscuro">
-                        <i class="icon-moon theme-icon"></i> <!-- Icono inicial (luna para modo oscuro), clase theme-icon añadida -->
+                        <i class="bi bi-moon-stars-fill theme-icon"></i> <!-- Icono Bootstrap: Luna (para modo oscuro) -->
                     </button>
                 </div>
             </div>
@@ -146,35 +166,20 @@
                 <p>&copy; 2024 SamsungStyle. Todos los derechos reservados.</p> <!-- Información de Copyright -->
                 <!-- Iconos de Redes Sociales -->
                 <div class="social-icons">
-                    <a href="#" aria-label="Visita nuestra página de Facebook"><i class="icon-facebook"></i></a> <!-- aria-label más descriptivo -->
-                    <a href="#" aria-label="Síguenos en Twitter"><i class="icon-twitter"></i></a>
-                    <a href="#" aria-label="Descubre nuestro Instagram"><i class="icon-instagram"></i></a>
-                    <a href="#" aria-label="Mira nuestros videos en YouTube"><i class="icon-youtube"></i></a> <!-- Icono y enlace adicional -->
+                    <a href="#" aria-label="Visita nuestra página de Facebook"><i class="bi bi-facebook"></i></a> <!-- Icono Bootstrap: Facebook -->
+                    <a href="#" aria-label="Síguenos en Twitter"><i class="bi bi-twitter-x"></i></a> <!-- Icono Bootstrap: Twitter X -->
+                    <a href="#" aria-label="Descubre nuestro Instagram"><i class="bi bi-instagram"></i></a> <!-- Icono Bootstrap: Instagram -->
+                    <a href="#" aria-label="Mira nuestros videos en YouTube"><i class="bi bi-youtube"></i></a> <!-- Icono Bootstrap: YouTube -->
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- Bloque de Estilos para Iconos de Marcador de Posición (Placeholder Icons) -->
-    <!-- IMPORTANTE: Estos son solo placeholders visuales y no son ideales para producción.
-         Para un sitio web real, se recomienda encarecidamente usar:
-         1. SVGs individuales: Ofrecen la mejor calidad, escalabilidad y son personalizables con CSS.
-         2. Librerías de iconos SVG/Fuentes de Iconos: Como FontAwesome, Bootstrap Icons, Material Icons, etc.
-            Estas librerías suelen ofrecer mejor semántica, accesibilidad y una amplia variedad de iconos.
-         Los estilos 'content' con emojis son una solución rápida y temporal para visualización durante el desarrollo. -->
-    <style>
-        /* Estilos básicos para los placeholders de iconos.
-           Ajustar 'font-size' y 'vertical-align' según sea necesario para una correcta alineación con el texto o como iconos independientes. */
-        .icon-search::before   { content: "🔍"; font-size: 1.1em; vertical-align: middle; } /* Placeholder para icono de búsqueda */
-        .icon-cart::before     { content: "🛒"; font-size: 1.1em; vertical-align: middle; } /* Placeholder para icono de carrito */
-        .icon-user::before     { content: "👤"; font-size: 1.1em; vertical-align: middle; } /* Placeholder para icono de usuario */
-        .icon-facebook::before { content: "📘"; font-size: 1.2em; vertical-align: middle; } /* Placeholder para icono de Facebook */
-        .icon-twitter::before  { content: "🐦"; font-size: 1.2em; vertical-align: middle; } /* Placeholder para icono de Twitter */
-        .icon-instagram::before{ content: "📸"; font-size: 1.2em; vertical-align: middle; } /* Placeholder para icono de Instagram */
-        .icon-youtube::before  { content: "▶️"; font-size: 1.2em; vertical-align: middle; } /* Placeholder para icono de YouTube (añadido) */
-        .icon-moon::before     { content: "🌙"; font-size: 1.1em; vertical-align: middle; } /* Placeholder para icono de luna (modo oscuro) */
-        .icon-sun::before      { content: "☀️"; font-size: 1.1em; vertical-align: middle; } /* Placeholder para icono de sol (modo claro) */
-    </style>
+    <!-- Botón Flotante de WhatsApp -->
+    <a href="https://wa.me/573142700201" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp">
+        <i class="bi bi-whatsapp"></i>
+    </a>
+
     <script src="script.js"></script> <!-- Enlace al archivo JavaScript -->
 </body>
 </html>
