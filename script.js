@@ -140,15 +140,37 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Event listener para el envío del formulario (por ahora solo cierra el modal)
+    // Event listener para el envío del formulario
     if (contactForm) {
-        contactForm.addEventListener('submit', (event) => {
-            event.preventDefault(); // Prevenir el envío real del formulario
-            // Aquí iría la lógica de envío de datos del formulario (AJAX, etc.)
-            // Por ahora, solo mostramos un mensaje y cerramos el modal.
-            alert('Mensaje enviado (simulación). ¡Gracias por contactarnos!');
-            closeModal();
-            contactForm.reset(); // Limpiar el formulario
+        contactForm.addEventListener('submit', () => {
+            // Al usar Formspree con un 'action' y 'method' en el HTML,
+            // no necesitamos JavaScript para manejar el envío en sí.
+            // El navegador se encargará de hacer el POST a Formspree.
+            // Formspree luego mostrará su página de "gracias" o redirigirá
+            // a la URL que hayas configurado en tu cuenta de Formspree.
+
+            // Opcionalmente, podríamos cerrar el modal aquí justo antes de que el navegador envíe el formulario,
+            // aunque la navegación a la página de Formspree lo hará irrelevante.
+            // Si quisiéramos una experiencia más fluida donde el modal se cierra y LUEGO se envía
+            // (útil si Formspree estuviera configurado para AJAX y no redirigiera),
+            // necesitaríamos un `event.preventDefault()` y manejar el envío con `fetch` o `XMLHttpRequest`.
+            // Pero para un envío HTML simple, no es necesario.
+
+            // Considera que después de un envío exitoso a Formspree, el usuario
+            // normalmente no regresa a la misma instancia de la página donde estaba el modal abierto.
+            // Por lo tanto, limpiar el formulario (`contactForm.reset()`) o cerrar el modal (`closeModal()`)
+            // aquí tiene un efecto limitado en la experiencia post-envío.
+            // Sin embargo, si el usuario usa el botón "atrás" del navegador después de ver la página de "gracias" de Formspree,
+            // podría ser útil que el modal estuviera cerrado y el formulario limpio.
+            // Para este caso, un pequeño delay podría ser una opción, aunque no es lo ideal.
+
+            // Por ahora, para mantenerlo simple y confiar en el flujo de Formspree:
+            // No se requiere ninguna acción de JavaScript aquí para el envío.
+            // Se podría añadir un indicador de "Enviando..." si se desea, pero eso
+            // complicaría el script innecesariamente para un envío HTML estándar.
+            console.log('Formulario de contacto enviado a Formspree (o lo intentará el navegador).');
+            // No llamamos a closeModal() ni a contactForm.reset() aquí para permitir
+            // que el navegador maneje la acción del formulario completamente.
         });
     }
 });
