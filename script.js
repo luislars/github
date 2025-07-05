@@ -20,15 +20,15 @@ document.addEventListener('DOMContentLoaded', () => {
     function applyTheme(theme) {
         if (theme === 'dark') {
             body.classList.add('dark-mode');
-            icon.classList.remove('icon-moon');
-            icon.classList.add('icon-sun');
+            icon.classList.remove('bi-moon-stars-fill'); // Clase de Bootstrap Icons para luna
+            icon.classList.add('bi-sun-fill');         // Clase de Bootstrap Icons para sol
             themeToggleButton.setAttribute('aria-label', 'Activar modo claro');
             themeToggleButton.setAttribute('title', 'Activar modo claro');
             localStorage.setItem('theme', 'dark');
         } else {
             body.classList.remove('dark-mode');
-            icon.classList.remove('icon-sun');
-            icon.classList.add('icon-moon');
+            icon.classList.remove('bi-sun-fill');         // Clase de Bootstrap Icons para sol
+            icon.classList.add('bi-moon-stars-fill'); // Clase de Bootstrap Icons para luna
             themeToggleButton.setAttribute('aria-label', 'Activar modo oscuro');
             themeToggleButton.setAttribute('title', 'Activar modo oscuro');
             localStorage.setItem('theme', 'light');
