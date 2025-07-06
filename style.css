@@ -492,6 +492,161 @@ footer {
 /*                             VARIABLES DE COLOR Y MODO OSCURO               */
 /* -------------------------------------------------------------------------- */
 
+/* ----- ESTILOS PARA EL ICONO DE CARRITO EN NAVBAR ----- */
+.cart-toggle-btn {
+    position: relative; /* Para posicionar el contador de ítems */
+    color: var(--text-color-secondary);
+    font-size: 1.35rem; /* Tamaño similar a otros iconos de navbar-controls */
+    padding: 0.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.3s ease;
+}
+
+.cart-toggle-btn:hover, .cart-toggle-btn:focus {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.cart-item-count {
+    position: absolute;
+    top: -5px; /* Ajustar para posicionar sobre el icono */
+    right: -8px; /* Ajustar para posicionar sobre el icono */
+    background-color: var(--primary-color);
+    color: var(--text-color-on-primary);
+    border-radius: 50%;
+    padding: 0.1em 0.45em; /* Padding pequeño para el contador */
+    font-size: 0.7rem; /* Tamaño de fuente pequeño para el contador */
+    font-weight: bold;
+    line-height: 1;
+    min-width: 18px; /* Ancho mínimo para que se vea bien con 1 dígito */
+    text-align: center;
+    border: 1px solid var(--surface-color); /* Borde para separarlo del icono */
+    display: none; /* Oculto por defecto, se mostrará con JS si hay ítems */
+}
+
+body.dark-mode .cart-item-count {
+    border-color: var(--background-color); /* Ajustar borde en modo oscuro */
+}
+
+.cart-toggle-btn.has-items .cart-item-count {
+    display: inline-block; /* Mostrar cuando hay ítems */
+}
+
+
+/* ----- ESTILOS PARA EL MODAL DEL CARRITO ----- */
+/* El .modal ya tiene estilos base. Aquí añadimos específicos para el contenido del carrito si es necesario. */
+.cart-modal-content {
+    max-width: 700px; /* Un poco más ancho que el modal de contacto */
+}
+
+#cart-items-container {
+    margin-bottom: 1.5rem;
+    max-height: 40vh; /* Altura máxima antes de hacer scroll */
+    overflow-y: auto; /* Scroll si los ítems exceden la altura */
+    padding-right: 10px; /* Espacio para la barra de scroll */
+}
+
+.cart-item { /* Estilos para cada fila/item en el carrito */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid var(--border-color);
+}
+.cart-item:last-child {
+    border-bottom: none;
+}
+
+.cart-item-image {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    margin-right: 1rem;
+    border-radius: 4px;
+}
+
+.cart-item-details {
+    flex-grow: 1;
+}
+.cart-item-details h4 {
+    font-size: 1rem;
+    margin: 0 0 0.2rem 0;
+    font-weight: 500;
+    color: var(--text-color-primary);
+}
+.cart-item-details p {
+    font-size: 0.85rem;
+    color: var(--text-color-secondary);
+    margin: 0;
+}
+
+.cart-item-quantity input {
+    width: 50px;
+    padding: 0.3rem;
+    text-align: center;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    margin: 0 0.5rem;
+    font-size: 0.9rem;
+    background-color: var(--background-color);
+    color: var(--text-color-primary);
+}
+body.dark-mode .cart-item-quantity input {
+    background-color: var(--surface-color);
+    border-color: var(--border-color-darker);
+}
+
+
+.cart-item-actions button { /* Botón para eliminar ítem */
+    background: none;
+    border: none;
+    color: var(--primary-color);
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0.2rem;
+}
+.cart-item-actions button:hover {
+    color: var(--primary-color-darker);
+}
+
+.cart-summary {
+    text-align: right;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.cart-actions {
+    display: flex;
+    flex-direction: column; /* Apila los botones de acción */
+    gap: 0.8rem;
+}
+
+.cart-actions .btn-checkout {
+    width: 100%;
+    padding: 0.7rem;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+.cart-actions .btn-checkout i {
+    font-size: 1.1em; /* Icono ligeramente más grande que el texto */
+}
+
+.cart-empty-message {
+    text-align: center;
+    padding: 2rem 0;
+    color: var(--text-color-secondary);
+    font-style: italic;
+}
+
+
 :root {
     /* Tema Claro (por defecto) */
     --primary-color: #0072c6;
