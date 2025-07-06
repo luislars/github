@@ -227,8 +227,75 @@ body.dark-mode .dropdown-menu li a:focus {
     transition: color 0.25s ease-out;
 }
 .navbar-icons a:hover, .navbar-icons a:focus {
-    color: #0072c6;
+    color: var(--primary-color); /* Actualizado para usar variable */
 }
+
+
+/* ESTILOS PARA EL CAMPO DE BÚSQUEDA EN NAVBAR */
+.search-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-input {
+    padding: 0.4rem 0.8rem;
+    padding-right: 2.5rem; /* Espacio para el botón de búsqueda */
+    border: 1px solid var(--border-color);
+    border-radius: 20px; /* Bordes redondeados */
+    font-size: 0.85rem;
+    background-color: var(--background-color);
+    color: var(--text-color-primary);
+    transition: width 0.3s ease-in-out, background-color 0.3s ease, border-color 0.3s ease;
+    width: 150px; /* Ancho inicial */
+}
+
+.search-input::placeholder {
+    color: var(--text-color-secondary); /* Color del placeholder */
+    opacity: 0.8;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px var(--primary-color-focus-shadow); /* Usando la variable definida para modales */
+    width: 200px; /* Ancho al enfocar */
+}
+
+.search-button {
+    position: absolute;
+    right: 0px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: var(--text-color-secondary);
+    padding: 0.4rem 0.8rem;
+    cursor: pointer;
+    font-size: 1rem; /* Tamaño del icono */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.3s ease;
+}
+
+.search-button:hover,
+.search-button:focus {
+    color: var(--primary-color);
+}
+
+/* Ajustes para modo oscuro */
+body.dark-mode .search-input {
+    background-color: var(--surface-color); /* Un fondo un poco más claro que el general en modo oscuro */
+    border-color: var(--border-color-darker);
+    color: var(--text-color-primary);
+}
+
+body.dark-mode .search-input::placeholder {
+    color: var(--text-color-secondary);
+    opacity: 0.7;
+}
+
 
 /* -------------------------------------------------------------------------- */
 /*                             ÁREA DE CONTENIDO PRINCIPAL                    */
@@ -382,6 +449,39 @@ main {
     padding: 0.7rem 1rem; /* Padding del botón en la tarjeta */
 }
 
+/* ESTILOS PARA INDICADOR DE PRODUCTO AÑADIDO */
+.product-card {
+    position: relative; /* Necesario para posicionar el indicador absolutamente dentro de la tarjeta */
+}
+
+.product-added-indicator {
+    display: none; /* Oculto por defecto */
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.8rem; /* Tamaño del ícono de check */
+    color: var(--primary-color); /* Usa el color primario del tema */
+    background-color: rgba(255, 255, 255, 0.8); /* Fondo semi-transparente para que destaque un poco sobre la imagen */
+    border-radius: 50%;
+    padding: 0.2rem;
+    line-height: 0; /* Para alinear mejor el icono si tiene espacio extra */
+    z-index: 5; /* Para asegurarse que esté sobre la imagen */
+}
+
+.product-card.product-selected .product-added-indicator {
+    display: block; /* Mostrar el indicador cuando la tarjeta está seleccionada */
+}
+
+.product-card.product-selected {
+    box-shadow: 0 0 0 2px var(--primary-color), 0 10px 25px var(--shadow-color-medium); /* Borde de color primario y sombra existente */
+    /* Opcional: Podríamos quitar el transform: translateY(-8px); de hover si ya está seleccionado */
+}
+
+/* Ajuste para modo oscuro si es necesario para el fondo del indicador */
+body.dark-mode .product-added-indicator {
+    background-color: rgba(40, 40, 40, 0.8);
+    color: var(--primary-color); /* El color primario ya se adapta al modo oscuro */
+}
 /* -------------------------------------------------------------------------- */
 /*                                 PIE DE PÁGINA                              */
 /* -------------------------------------------------------------------------- */

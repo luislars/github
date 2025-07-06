@@ -58,8 +58,12 @@
                 <!-- Iconos de Navegación Auxiliar (Búsqueda, Carrito, Usuario) y Conmutador de Tema -->
                 <div class="navbar-controls"> <!-- Contenedor renombrado para incluir el conmutador -->
                     <div class="navbar-icons">
-                        <a href="#" aria-label="Buscar"><i class="bi bi-search"></i></a> <!-- Icono Bootstrap: Búsqueda -->
-                        <a href="#" aria-label="Carrito"><i class="bi bi-cart3"></i></a> <!-- Icono Bootstrap: Carrito -->
+                        <div class="search-container">
+                            <input type="text" class="search-input" placeholder="Buscar...">
+                            <button type="submit" class="search-button" aria-label="Buscar">
+                                <i class="bi bi-search"></i>
+                            </button>
+                        </div>
                         <a href="#" aria-label="Usuario"><i class="bi bi-person-circle"></i></a> <!-- Icono Bootstrap: Usuario -->
                     </div>
                     <!-- Conmutador de Modo Oscuro/Claro -->
@@ -100,9 +104,10 @@
                              data-product-id="galaxy-s24-ultra"
                              data-product-name="Galaxy S24 Ultra"
                              data-product-price="1200"
-                             data-product-image="https://via.placeholder.com/300x220?text=Galaxy+S24+Ultra">
-                        <!-- TODO: Reemplazar src con la ruta a la imagen real del producto, ej: images/products/galaxy-s24-ultra.jpg -->
-                        <img src="https://via.placeholder.com/300x220?text=Galaxy+S24+Ultra" alt="Teléfono Móvil Galaxy S24 Ultra con IA">
+                             data-product-image="imagenes_productos/moviles/galaxy_s24_ultra.jpg">
+                        <span class="product-added-indicator"><i class="bi bi-check-circle-fill"></i></span>
+                        <!-- TODO: Asegurarse que la imagen 'imagenes_productos/moviles/galaxy_s24_ultra.jpg' exista. Considerar nombres numéricos (ej: 1.jpg) para facilitar reemplazo. -->
+                        <img src="imagenes_productos/moviles/galaxy_s24_ultra.jpg" alt="Teléfono Móvil Galaxy S24 Ultra con IA">
                         <h3>Galaxy S24 Ultra</h3>
                         <p>El poder de la IA en tus manos.</p>
                         <button class="btn btn-primary add-to-cart-btn">Añadir al Carrito</button>
@@ -113,9 +118,10 @@
                              data-product-id="neo-qled-8k"
                              data-product-name="Neo QLED 8K"
                              data-product-price="2500"
-                             data-product-image="https://via.placeholder.com/300x220?text=Neo+QLED+8K">
-                        <!-- TODO: Reemplazar src con la ruta a la imagen real del producto, ej: images/products/neo-qled-8k.jpg -->
-                        <img src="https://via.placeholder.com/300x220?text=Neo+QLED+8K" alt="Televisor Neo QLED 8K de alta resolución">
+                             data-product-image="imagenes_productos/tv_av/neo_qled_8k.jpg">
+                        <span class="product-added-indicator"><i class="bi bi-check-circle-fill"></i></span>
+                        <!-- TODO: Asegurarse que la imagen 'imagenes_productos/tv_av/neo_qled_8k.jpg' exista. Considerar nombres numéricos (ej: 1.jpg) para facilitar reemplazo. -->
+                        <img src="imagenes_productos/tv_av/neo_qled_8k.jpg" alt="Televisor Neo QLED 8K de alta resolución">
                         <h3>Neo QLED 8K</h3>
                         <p>Imágenes que desafían la realidad.</p>
                         <button class="btn btn-primary add-to-cart-btn">Añadir al Carrito</button>
@@ -126,9 +132,10 @@
                              data-product-id="bespoke-ai-lavadora"
                              data-product-name="Bespoke AI Lavadora"
                              data-product-price="950"
-                             data-product-image="https://via.placeholder.com/300x220?text=Bespoke+AI+Lavadora">
-                        <!-- TODO: Reemplazar src con la ruta a la imagen real del producto, ej: images/products/bespoke-ai-lavadora.jpg -->
-                        <img src="https://via.placeholder.com/300x220?text=Bespoke+AI+Lavadora" alt="Lavadora Bespoke AI con diseño personalizable e inteligencia artificial">
+                             data-product-image="imagenes_productos/electrodomesticos/bespoke_ai_lavadora.jpg">
+                        <span class="product-added-indicator"><i class="bi bi-check-circle-fill"></i></span>
+                        <!-- TODO: Asegurarse que la imagen 'imagenes_productos/electrodomesticos/bespoke_ai_lavadora.jpg' exista. Considerar nombres numéricos (ej: 1.jpg) para facilitar reemplazo. -->
+                        <img src="imagenes_productos/electrodomesticos/bespoke_ai_lavadora.jpg" alt="Lavadora Bespoke AI con diseño personalizable e inteligencia artificial">
                         <h3>Bespoke AI Lavadora</h3>
                         <p>Lavado inteligente, vida fácil.</p>
                         <button class="btn btn-primary add-to-cart-btn">Añadir al Carrito</button>
