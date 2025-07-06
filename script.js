@@ -388,16 +388,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Generador de ID de Pedido ---
     function generateOrderId() {
-        // crypto.randomUUID() es la forma moderna y preferida para generar UUIDs.
-        // Es globalmente único y muy difícil de colisionar.
-        if (typeof crypto !== 'undefined' && crypto.randomUUID) {
-            return crypto.randomUUID();
-        } else {
-            // Fallback simple si crypto.randomUUID no está disponible (raro en navegadores modernos)
-            // No es globalmente único, pero suficientemente bueno para este caso de uso.
-            console.warn("crypto.randomUUID no disponible, usando fallback para generar ID de pedido.");
-            return `ID-${Date.now()}-${Math.floor(Math.random() * 10000)}`;
+        const prefix = "RES-";
+        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        const length = 6; // Generará 6 caracteres aleatorios después del prefijo
+        let randomPart = '';
+        for (let i = 0; i < length; i++) {
+            randomPart += characters.charAt(Math.floor(Math.random() * characters.length));
         }
+        // ID final tendrá formato como "RES-A1B2C3" (total 10 caracteres)
+        return prefix + randomPart;
     }
 
     // --- Funcionalidad de Checkout Simulado (WhatsApp, Wompi) ---
@@ -512,7 +511,25 @@ document.addEventListener('DOMContentLoaded', () => {
                 const productImage = productCard.dataset.productImage;
 
                 addToCart(productId, productName, productPrice, productImage);
-                // Aquí podríamos dar algún feedback visual, como cambiar el texto del botón temporalmente.
+
+                // Feedback visual para el botón
+                const originalButtonText = event.target.innerHTML;
+                event.target.innerHTML = '¡Añadido! <i class="bi bi-check-lg"></i>';
+                event.target.disabled = true;
+
+                // Feedback visual para el icono del carrito en la navbar
+                const cartIcon = document.getElementById('cart-toggle');
+                if (cartIcon) {
+                    cartIcon.classList.add('item-added-feedback');
+                    setTimeout(() => {
+                        cartIcon.classList.remove('item-added-feedback');
+                    }, 600); // Duración de la animación del carrito
+                }
+
+                setTimeout(() => {
+                    event.target.innerHTML = originalButtonText;
+                    event.target.disabled = false;
+                }, 2000); // Restaurar botón después de 2 segundos
             }
         });
     });
