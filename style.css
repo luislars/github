@@ -646,6 +646,32 @@ body.dark-mode .cart-item-quantity input {
     font-style: italic;
 }
 
+.order-id-display {
+    margin-top: 1rem;
+    padding: 0.8rem;
+    background-color: var(--background-color); /* Un fondo sutil */
+    border: 1px dashed var(--border-color); /* Borde discontinuo para destacar */
+    border-radius: 6px;
+    text-align: center;
+    font-size: 0.9rem;
+}
+body.dark-mode .order-id-display {
+    background-color: var(--surface-color); /* Fondo de superficie en modo oscuro */
+    border-color: var(--border-color-darker);
+}
+.order-id-display p {
+    margin: 0;
+    line-height: 1.4;
+}
+.order-id-display strong {
+    font-family: 'Courier New', Courier, monospace; /* Fuente monoespaciada para el ID */
+    word-break: break-all; /* Para que IDs largos no rompan el layout */
+}
+.order-id-display small {
+    font-size: 0.8em;
+    color: var(--text-color-secondary);
+}
+
 
 :root {
     /* Tema Claro (por defecto) */
