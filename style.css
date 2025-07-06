@@ -870,6 +870,57 @@ body.dark-mode {
 
 
 /* -------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+/*                          SECCIÓN DE MUESTRA DE VIDEO                       */
+/* -------------------------------------------------------------------------- */
+
+/* Estilos para la sección que contiene el video de muestra. */
+.video-showcase {
+    padding: 3rem 0; /* Espaciado vertical amplio para destacar la sección. */
+    background-color: var(--surface-color); /* Fondo coherente con otras superficies como tarjetas. */
+    /* Comentario para el desarrollador: Si se desea un fondo distinto en modo claro, se podría descomentar la siguiente línea: */
+    /* background-color: #e9ecef; */
+}
+/* Comentario para el desarrollador: No se necesita una regla específica para body.dark-mode .video-showcase
+   si se desea que --surface-color maneje el color de fondo en ambos modos.
+   Si se quisiera un color específico para el fondo de esta sección en modo oscuro, se añadiría aquí. */
+
+/* Estilos para el título de la sección de video. */
+.video-showcase h2 {
+    font-family: 'Poppins', sans-serif; /* Coherencia con otros títulos de sección. */
+    font-size: clamp(1.8rem, 4vw, 2.5rem); /* Tamaño de fuente responsivo. */
+    font-weight: 600; /* Peso semi-bold. */
+    text-align: center; /* Título centrado. */
+    margin-bottom: 2.5rem; /* Espacio debajo del título, antes del video. */
+    color: var(--text-color-primary); /* Color de texto primario, adaptable a temas. */
+}
+
+/*
+ * Contenedor del video (video-wrapper).
+ * Esta técnica (padding-bottom hack) se usa para hacer iframes responsivos
+ * manteniendo una relación de aspecto fija (comúnmente 16:9 para videos).
+ */
+.video-wrapper {
+    position: relative; /* Necesario para el posicionamiento absoluto del iframe hijo. */
+    padding-bottom: 56.25%; /* Para una relación de aspecto 16:9 (calculado como 9 / 16 * 100%). */
+    height: 0; /* El alto se controla con el padding-bottom, por lo que height debe ser 0. */
+    overflow: hidden; /* Evita que el contenido del iframe (si fuera más grande) se desborde. */
+    border-radius: 10px; /* Bordes redondeados para una apariencia más suave y moderna del contenedor del video. */
+    box-shadow: 0 8px 20px var(--shadow-color-medium); /* Sombra elegante para destacar el video. */
+}
+
+/* Estilos para el iframe del video en sí. */
+.video-wrapper iframe {
+    position: absolute; /* Se posiciona absolutamente dentro del .video-wrapper. */
+    top: 0;
+    left: 0;
+    width: 100%; /* Ocupa todo el ancho del wrapper. */
+    height: 100%; /* Ocupa toda la altura calculada por el padding-bottom del wrapper. */
+    border: none; /* Elimina cualquier borde por defecto del iframe. */
+}
+
+
+/* -------------------------------------------------------------------------- */
 /*                             ESTILOS RESPONSIVE                             */
 /* -------------------------------------------------------------------------- */
 
