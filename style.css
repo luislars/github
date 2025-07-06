@@ -296,6 +296,22 @@ body.dark-mode .search-input::placeholder {
     opacity: 0.7;
 }
 
+/* -------------------------------------------------------------------------- */
+/*                       ESTILOS PARA PÁGINAS DE CATEGORÍA                    */
+/* -------------------------------------------------------------------------- */
+.category-products {
+    padding-top: 1rem; /* Reducido, ya que main ya tiene padding-top */
+    padding-bottom: 4rem; /* Espacio al final de la sección */
+}
+
+.category-products h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(1.8rem, 4vw, 2.5rem); /* Tamaño de fuente responsive */
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 3rem; /* Espacio antes de la cuadrícula de productos */
+    color: var(--text-color-primary);
+}
 
 /* -------------------------------------------------------------------------- */
 /*                             ÁREA DE CONTENIDO PRINCIPAL                    */
