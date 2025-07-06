@@ -66,6 +66,11 @@
                     <button id="theme-toggle" class="theme-toggle-btn" aria-label="Activar modo oscuro" title="Activar modo oscuro">
                         <i class="bi bi-moon-stars-fill theme-icon"></i> <!-- Icono Bootstrap: Luna (para modo oscuro) -->
                     </button>
+                    <!-- Icono/Botón del Carrito -->
+                    <a href="#" id="cart-toggle" class="cart-toggle-btn" aria-label="Ver carrito de compras">
+                        <i class="bi bi-cart-fill"></i>
+                        <span id="cart-item-count" class="cart-item-count">0</span>
+                    </a>
                 </div>
             </div>
         </nav>
@@ -91,30 +96,42 @@
                 <div class="product-grid">
                     <!-- Tarjeta de Producto Individual (Ejemplo 1) -->
                     <!-- La etiqueta <article> es semánticamente adecuada para contenido auto-contenido como una tarjeta de producto -->
-                    <article class="product-card">
-                        <!-- TODO: Reemplazar con la ruta a la imagen real del producto, ej: images/products/galaxy-s24-ultra.jpg -->
-                        <img src="https://via.placeholder.com/300x220?text=Galaxy+S24+Ultra" alt="Teléfono Móvil Galaxy S24 Ultra con IA"> <!-- Imagen del producto. El atributo alt es crucial para la accesibilidad y SEO, describiendo la imagen -->
-                        <h3>Galaxy S24 Ultra</h3> <!-- Nombre del producto -->
-                        <p>El poder de la IA en tus manos.</p> <!-- Descripción corta y atractiva del producto -->
-                        <a href="#" class="btn btn-secondary">Más Información</a> <!-- Botón para ver más detalles del producto específico -->
+                    <article class="product-card"
+                             data-product-id="galaxy-s24-ultra"
+                             data-product-name="Galaxy S24 Ultra"
+                             data-product-price="1200"
+                             data-product-image="https://via.placeholder.com/300x220?text=Galaxy+S24+Ultra">
+                        <!-- TODO: Reemplazar src con la ruta a la imagen real del producto, ej: images/products/galaxy-s24-ultra.jpg -->
+                        <img src="https://via.placeholder.com/300x220?text=Galaxy+S24+Ultra" alt="Teléfono Móvil Galaxy S24 Ultra con IA">
+                        <h3>Galaxy S24 Ultra</h3>
+                        <p>El poder de la IA en tus manos.</p>
+                        <button class="btn btn-primary add-to-cart-btn">Añadir al Carrito</button>
                     </article>
 
                     <!-- Tarjeta de Producto Individual (Ejemplo 2) -->
-                    <article class="product-card">
-                        <!-- TODO: Reemplazar con la ruta a la imagen real del producto, ej: images/products/neo-qled-8k.jpg -->
+                    <article class="product-card"
+                             data-product-id="neo-qled-8k"
+                             data-product-name="Neo QLED 8K"
+                             data-product-price="2500"
+                             data-product-image="https://via.placeholder.com/300x220?text=Neo+QLED+8K">
+                        <!-- TODO: Reemplazar src con la ruta a la imagen real del producto, ej: images/products/neo-qled-8k.jpg -->
                         <img src="https://via.placeholder.com/300x220?text=Neo+QLED+8K" alt="Televisor Neo QLED 8K de alta resolución">
                         <h3>Neo QLED 8K</h3>
                         <p>Imágenes que desafían la realidad.</p>
-                        <a href="#" class="btn btn-secondary">Más Información</a>
+                        <button class="btn btn-primary add-to-cart-btn">Añadir al Carrito</button>
                     </article>
 
                     <!-- Tarjeta de Producto Individual (Ejemplo 3) -->
-                    <article class="product-card">
-                        <!-- TODO: Reemplazar con la ruta a la imagen real del producto, ej: images/products/bespoke-ai-lavadora.jpg -->
+                    <article class="product-card"
+                             data-product-id="bespoke-ai-lavadora"
+                             data-product-name="Bespoke AI Lavadora"
+                             data-product-price="950"
+                             data-product-image="https://via.placeholder.com/300x220?text=Bespoke+AI+Lavadora">
+                        <!-- TODO: Reemplazar src con la ruta a la imagen real del producto, ej: images/products/bespoke-ai-lavadora.jpg -->
                         <img src="https://via.placeholder.com/300x220?text=Bespoke+AI+Lavadora" alt="Lavadora Bespoke AI con diseño personalizable e inteligencia artificial">
                         <h3>Bespoke AI Lavadora</h3>
                         <p>Lavado inteligente, vida fácil.</p>
-                        <a href="#" class="btn btn-secondary">Más Información</a>
+                        <button class="btn btn-primary add-to-cart-btn">Añadir al Carrito</button>
                     </article>
                 </div>
             </div>
@@ -184,7 +201,7 @@
             </div>
             <!-- Sección Inferior del Pie de Página -->
             <div class="footer-bottom">
-                <p>&copy; 2024 Resistoma. Todos los derechos reservados.</p> <!-- Información de Copyright -->
+                <p>&copy; <span id="current-year">2024</span> Resistoma. Todos los derechos reservados.</p> <!-- Información de Copyright con año dinámico -->
                 <!-- Iconos de Redes Sociales -->
                 <div class="social-icons">
                     <a href="https://www.facebook.com/profile.php?id=61577841425989" target="_blank" rel="noopener noreferrer" aria-label="Visita nuestra página de Facebook"><i class="bi bi-facebook"></i></a> <!-- Icono Bootstrap: Facebook -->
@@ -219,6 +236,26 @@
                 </div>
                 <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
             </form>
+        </div>
+    </div>
+
+    <!-- Modal del Carrito de Compras -->
+    <div id="cart-modal" class="modal">
+        <div class="modal-content cart-modal-content"> <!-- Clase adicional para posible sizing diferente -->
+            <button class="modal-close cart-modal-close" aria-label="Cerrar carrito">&times;</button>
+            <h2>Mi Carrito</h2>
+            <div id="cart-items-container">
+                <!-- Los ítems del carrito se insertarán aquí con JavaScript -->
+                <p class="cart-empty-message">Tu carrito está vacío.</p>
+            </div>
+            <div class="cart-summary">
+                <p>Total: <span id="cart-total-price">$0.00</span></p>
+            </div>
+            <div class="cart-actions">
+                <button id="whatsapp-checkout-btn" class="btn btn-success btn-checkout"><i class="bi bi-whatsapp"></i> Enviar por WhatsApp</button>
+                <button id="email-checkout-btn" class="btn btn-secondary btn-checkout"><i class="bi bi-envelope-fill"></i> Enviar por Email</button>
+                <!-- <button id="wompi-checkout-btn" class="btn btn-info btn-checkout">Pagar con Wompi (Simulado)</button> -->
+            </div>
         </div>
     </div>
 
