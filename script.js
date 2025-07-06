@@ -386,18 +386,34 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     // --- Fin Funcionalidad del Modal del Carrito ---
 
-    // --- Funcionalidad de Checkout Simulado (WhatsApp, Email) ---
-    function generateOrderSummaryText() {
+    // --- Generador de ID de Pedido ---
+    function generateOrderId() {
+        // crypto.randomUUID() es la forma moderna y preferida para generar UUIDs.
+        // Es globalmente único y muy difícil de colisionar.
+        if (typeof crypto !== 'undefined' && crypto.randomUUID) {
+            return crypto.randomUUID();
+        } else {
+            // Fallback simple si crypto.randomUUID no está disponible (raro en navegadores modernos)
+            // No es globalmente único, pero suficientemente bueno para este caso de uso.
+            console.warn("crypto.randomUUID no disponible, usando fallback para generar ID de pedido.");
+            return `ID-${Date.now()}-${Math.floor(Math.random() * 10000)}`;
+        }
+    }
+
+    // --- Funcionalidad de Checkout Simulado (WhatsApp, Wompi) ---
+    // Modificada para incluir el ID del pedido
+    function generateOrderSummaryText(orderId) {
         if (cart.length === 0) {
             return "El carrito está vacío.";
         }
 
-        let summary = "Resumen del Pedido:\n\n";
+        let summary = `ID del Pedido: ${orderId}\n\n`;
+        summary += "Resumen del Pedido:\n\n";
         let totalPrice = 0;
 
         cart.forEach(item => {
             const itemSubtotal = item.price * item.quantity;
-            summary += `${item.name}\n`;
+            summary += `Producto: ${item.name}\n`;
             summary += `  Cantidad: ${item.quantity}\n`;
             summary += `  Precio Unitario: $${item.price.toFixed(2)}\n`;
             summary += `  Subtotal: $${itemSubtotal.toFixed(2)}\n\n`;
@@ -410,7 +426,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const whatsappCheckoutButton = document.getElementById('whatsapp-checkout-btn');
-    const emailCheckoutButton = document.getElementById('email-checkout-btn');
+    const wompiCheckoutButton = document.getElementById('wompi-checkout-btn'); // Nuevo botón Wompi
+    const orderIdDisplayContainer = document.getElementById('order-id-display');
+    const currentOrderIdElement = document.getElementById('current-order-id');
 
     if (whatsappCheckoutButton) {
         whatsappCheckoutButton.addEventListener('click', () => {
@@ -418,32 +436,66 @@ document.addEventListener('DOMContentLoaded', () => {
                 alert("Tu carrito está vacío. Añade productos antes de enviar tu pedido.");
                 return;
             }
-            const orderText = generateOrderSummaryText();
-            const whatsappNumber = "573142700201"; // Número proporcionado por el usuario
+            const orderId = generateOrderId(); // Generar ID de pedido
+            const orderText = generateOrderSummaryText(orderId); // Pasar ID al resumen
+            const whatsappNumber = "573142700201";
             const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(orderText)}`;
+
+            if(currentOrderIdElement && orderIdDisplayContainer) {
+                currentOrderIdElement.textContent = orderId;
+                orderIdDisplayContainer.style.display = 'block'; // Mostrar el ID del pedido
+            }
+            alert(`Tu ID de Pedido es: ${orderId}\nEste ID se incluirá en tu mensaje de WhatsApp.`);
+
             window.open(whatsappUrl, '_blank');
-            // Opcional: limpiar carrito después de enviar
-            // cart = [];
-            // saveCart();
-            // renderCart();
-            // closeModal(); // o closeCartModal() si se renombra
+            // Limpiar el carrito después de enviar por WhatsApp
+            setTimeout(clearCart, 500); // Pequeño delay para asegurar que el mensaje se envíe
+            // Opcional: cerrar el modal también
+            // setTimeout(closeCartModal, 600);
         });
     }
 
-    if (emailCheckoutButton) {
-        emailCheckoutButton.addEventListener('click', () => {
+    if (wompiCheckoutButton) {
+        wompiCheckoutButton.addEventListener('click', (event) => {
             if (cart.length === 0) {
-                alert("Tu carrito está vacío. Añade productos antes de enviar tu pedido.");
+                alert("Tu carrito está vacío. Añade productos antes de proceder al pago.");
+                event.preventDefault(); // Prevenir la navegación si el carrito está vacío
                 return;
             }
-            const orderText = generateOrderSummaryText();
-            const storeEmail = "temporal@resistoma.com"; // Correo proporcionado por el usuario
-            const subject = "Nuevo Pedido desde la Tienda Web Resistoma";
-            const mailtoUrl = `mailto:${storeEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(orderText)}`;
-            window.location.href = mailtoUrl; // Usar window.location.href para mailto
+            const orderId = generateOrderId();
+
+            if(currentOrderIdElement && orderIdDisplayContainer) {
+                currentOrderIdElement.textContent = orderId;
+                orderIdDisplayContainer.style.display = 'block';
+            }
+            // Mostrar alerta antes de redirigir y limpiar.
+            alert(`Tu ID de Pedido es: ${orderId}\nSerás redirigido a Wompi. Por favor, guarda este ID para referencia.`);
+
+            // El href del botón ya tiene la URL de Wompi, la navegación se producirá por defecto.
+            // Limpiar el carrito después de un pequeño delay para permitir la navegación.
+            // Esto es una simplificación; en un escenario real, la limpieza del carrito
+            // se haría idealmente después de una confirmación de pago exitoso desde Wompi (requiere backend o callbacks).
+            setTimeout(clearCart, 1000); // Delay más largo para dar tiempo a la redirección
         });
     }
     // --- Fin Funcionalidad de Checkout Simulado ---
+
+    // --- Función para Limpiar el Carrito ---
+    function clearCart() {
+        cart = [];
+        saveCart();
+        renderCart(); // Esto actualizará la UI, mostrará el carrito vacío y reseteará el contador.
+
+        // Ocultar el display del ID de pedido si estaba visible
+        if (orderIdDisplayContainer && orderIdDisplayContainer.style.display === 'block') {
+            orderIdDisplayContainer.style.display = 'none';
+            if(currentOrderIdElement) currentOrderIdElement.textContent = '';
+        }
+        // Considerar si cerrar el modal del carrito automáticamente
+        // closeCartModal();
+        console.log("Carrito limpiado.");
+    }
+    // --- Fin Función para Limpiar el Carrito ---
 
 
     // Seleccionar todos los botones "Añadir al Carrito"

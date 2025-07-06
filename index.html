@@ -250,11 +250,15 @@
             </div>
             <div class="cart-summary">
                 <p>Total: <span id="cart-total-price">$0.00</span></p>
+                <div id="order-id-display" class="order-id-display" style="display: none;">
+                    <p>ID de tu Pedido: <strong id="current-order-id"></strong><br><small>(Guarda este ID para referencia)</small></p>
+                </div>
             </div>
             <div class="cart-actions">
-                <button id="whatsapp-checkout-btn" class="btn btn-success btn-checkout"><i class="bi bi-whatsapp"></i> Enviar por WhatsApp</button>
-                <button id="email-checkout-btn" class="btn btn-secondary btn-checkout"><i class="bi bi-envelope-fill"></i> Enviar por Email</button>
-                <!-- <button id="wompi-checkout-btn" class="btn btn-info btn-checkout">Pagar con Wompi (Simulado)</button> -->
+                <button id="whatsapp-checkout-btn" class="btn btn-success btn-checkout"><i class="bi bi-whatsapp"></i> Enviar Pedido por WhatsApp</button>
+                <a href="https://checkout.wompi.co/l/VPOS_20Q1Zc" id="wompi-checkout-btn" class="btn btn-primary btn-checkout" target="_blank" rel="noopener noreferrer">
+                    <i class="bi bi-credit-card-fill"></i> Pagar con Wompi
+                </a>
             </div>
         </div>
     </div>
